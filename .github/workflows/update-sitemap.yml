@@ -1,0 +1,36 @@
+name: Update Sitemap
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'index.html'
+      - '*.html'
+  schedule:
+    # Run monthly on the 1st at 00:00 UTC
+    - cron: '0 0 1 * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-sitemap:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+        
+    - name: Generate sitemap
+      run: python3 generate_sitemap.py
+      
+    - name: Commit and push if sitemap changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add sitemap.xml
+        git diff --staged --quiet || git commit -m "Auto-update sitemap [skip ci]"
+        git push 
