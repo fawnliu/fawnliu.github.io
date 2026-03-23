@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenSplat: Bridging the Generalization Gap in 3DGS Language Comprehension</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --accent: #7c3aed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 28px;
+            color: var(--text);
+        }
+
+        .authors {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .authors sup {
+            font-size: 0.65em;
+            color: var(--text);
+        }
+
+        .affiliations {
+            font-size: 1.15rem;
+            color: var(--text);
+            margin-bottom: 4px;
+            font-weight: 400;
+        }
+
+        .venue {
+            font-size: 1.3rem;
+            color: var(--text);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .note {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 28px;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            background: var(--text);
+            color: #fff;
+        }
+
+        .links a:hover {
+            background: #334155;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 0;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+
+        .abstract-text {
+            font-size: 0.98rem;
+            color: var(--text);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Figures */
+        .figure-block {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .figure-block img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .figure-caption {
+            margin-top: 12px;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 860px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        .result-table th,
+        .result-table td {
+            padding: 10px 14px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .result-table thead th {
+            background: var(--bg-alt);
+            font-weight: 600;
+            color: var(--text);
+            border-bottom: 2px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .result-table tbody tr:hover {
+            background: #f0f5ff;
+        }
+
+        .result-table .ours-row {
+            background: #eff6ff;
+            font-weight: 600;
+        }
+
+        .result-table .ours-row:hover {
+            background: #dbeafe;
+        }
+
+        .result-table td:first-child,
+        .result-table th:first-child {
+            text-align: left;
+        }
+
+        .best {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .section-divider {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .section-divider td {
+            text-align: left !important;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--text-secondary);
+            padding-top: 14px;
+        }
+
+        /* BibTeX */
+        .bibtex-wrapper {
+            position: relative;
+        }
+
+        .bibtex-copy-btn {
+            position: absolute;
+            top: -44px;
+            right: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .bibtex-copy-btn:hover {
+            background: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .bibtex-copy-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .bibtex-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .bibtex-box pre {
+            font-family: 'Courier New', monospace;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            white-space: pre;
+            margin: 0;
+            color: var(--text);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .result-table {
+                font-size: 0.8rem;
+            }
+
+            .result-table th,
+            .result-table td {
+                padding: 8px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <h1>GenSplat: Bridging the Generalization Gap<br>in 3DGS Language Comprehension</h1>
+        <p class="authors">
+            <a href="https://fawnliu.github.io/" style="color: inherit; text-decoration: none;">Fang Liu</a><sup>*</sup>, &nbsp;
+            <a href="https://scholar.google.com/citations?user=eHWiGU8AAAAJ&hl=en" style="color: inherit; text-decoration: none;">Yuhao Liu</a><sup>*</sup>, &nbsp;
+            <a href="https://scholar.google.com/citations?user=2meBhbQAAAAJ&hl=en" style="color: inherit; text-decoration: none;">Ke Xu</a><sup>&dagger;</sup>, &nbsp;
+            <a href="https://scholar.google.com/citations?user=C2iR3xUAAAAJ&hl=en" style="color: inherit; text-decoration: none;">Gerhard Petrus Hancke</a>, &nbsp;
+            <a href="https://scholar.google.com/citations?user=KilQqKYAAAAJ&hl=en" style="color: inherit; text-decoration: none;">Rynson W.H. Lau</a><sup>&dagger;</sup>
+        </p>
+        <p class="affiliations">City University of Hong Kong</p>
+        <p class="venue">CVPR 2026</p>
+        <p class="note"><sup>*</sup>Equal Contribution &nbsp;&nbsp; <sup>&dagger;</sup>Joint Corresponding Authors</p>
+        <div class="links">
+            <a href="https://arxiv.org/abs/XXXX.XXXXX">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Paper
+            </a>
+            <a href="https://github.com/fawnliu/GenSplat">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                Code
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Abstract -->
+<section style="background: var(--bg-alt);">
+    <div class="container">
+        <h2>Abstract</h2>
+        <p class="abstract-text">
+            In this paper, we propose <strong>GenSplat</strong>, a novel approach for language comprehension in 3D Gaussian Splatting (3DGS).
+            Unlike previous methods that either achieve cross-scene generalization by being bounded to a predefined vocabulary or handle free-form language by overfitting to individual scenes,
+            GenSplat is robust to free-form language queries and generalizable across 3DGS scene representations.
+            Our key insight is to formulate a structured learning process to progressively align linguistic concepts with 3D Gaussians.
+            It contains two novel technical contributions.
+            First, we propose a <em>Progressive Language Grounding Curriculum</em> that structurally guides the model through learning semantic-level representations to instance-level concepts and free-form language, preventing overfitting by building a generalizable language feature space.
+            Second, we design a <em>Multi-modal Large Language Models (MLLM)-guided Reasoning Module</em> that leverages MLLM's semantic and spatial priors to enhance 3D localization and reasoning.
+            To further improve spatial alignment and computational efficiency, we introduce a <em>Geometry-Aware Frame Selector (GAFS)</em>, which adaptively selects the most informative views based on Gaussian and textural cues.
+            Extensive cross-task evaluations (including 3D referring segmentation, 3D visual question answering, and 3D open-vocabulary understanding) demonstrate state-of-the-art performances and strong generalization capability of GenSplat.
+        </p>
+    </div>
+</section>
+
+<!-- Pipeline -->
+<section>
+    <div class="container">
+        <h2>Method Overview</h2>
+        <div class="figure-block">
+            <img src="static/images/pipeline.png" alt="GenSplat Pipeline">
+            <p class="figure-caption">
+                <strong>Overview of the GenSplat framework.</strong>
+                Given multi-view RGB images and a text query (e.g., for Referring Segmentation or VQA),
+                GenSplat first reconstructs a 3D Gaussian representation and extracts semantic Gaussian features via the <em>Gaussian Encoder</em>,
+                based on which the <em>Instance Decoder</em> produces instance queries for 3D segmentation.
+                Meanwhile, a Geometry-Aware Frame Selector (GAFS) adaptively selects informative keyframes.
+                The text and selected frames are processed by a MLLM to predict a reasoning token for referring segmentation (or generate answering tokens for VQA).
+                The generated token is concatenated with instance queries and fed into the <em>Referring Decoder</em> to generate the corresponding 3D Gaussian mask.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Qualitative -->
+<section style="background: var(--bg-alt);">
+    <div class="container">
+        <h2>Qualitative Results</h2>
+
+        <div class="figure-block">
+            <img src="static/images/qualtative.png" alt="Qualitative Results">
+            <p class="figure-caption">
+                <strong>Qualitative visualization on ScanRefer and SQA3D datasets.</strong>
+                We showcase referring segmentation results on both scenes (a) and (b), and additionally present a question answering example on scene (b).
+                For complex free-form queries, GenSplat reliably locates the target object, showcasing strong reasoning ability.
+                In contrast, 2D-based methods (Grounded-SAM) and per-scene optimization approaches fail under these challenging scenarios.
+            </p>
+        </div>
+
+
+        <div class="figure-block" style="margin-top: 40px;">
+            <img src="static/images/supp_complex.png" alt="Complex Query Results" style="max-width: 95%;">
+            <p class="figure-caption">
+                <strong>Complex query results.</strong> GenSplat handles complex free-form language queries that require compositional reasoning and spatial understanding.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<!-- BibTeX -->
+<section style="background">
+    <div class="container">
+        <h2>BibTeX</h2>
+        <div class="bibtex-wrapper">
+            <button class="bibtex-copy-btn" onclick="copyBibtex()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span id="copy-text">Copy</span>
+            </button>
+            <div class="bibtex-box">
+<!-- <pre id="bibtex-content">@inproceedings{liu2026gensplat,
+  title     = {GenSplat: Bridging the Generalization Gap in 3DGS Language Comprehension},
+  author    = {Liu, Fang and Liu, Yuhao and Xu, Ke and Hancke, Gerhard Petrus and Lau, Rynson W.H.},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2026}
+}</pre> -->
+<pre id="bibtex-content">Coming soon...</pre>
+            </div>
+        </div>
+        <p style="margin-top: 16px; font-size: 0.9rem; color: var(--text-secondary);">If you have any questions, please contact me at <a href="mailto:fawnliu2333@gmail.com" style="color: var(--primary);">fawnliu2333@gmail.com</a>.</p>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" style="color: var(--primary);">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" style="color: var(--primary);">Nerfies</a> project page.</p>
+    </div>
+</footer>
+
+<script>
+function copyBibtex() {
+    const text = document.getElementById('bibtex-content').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-text');
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>
