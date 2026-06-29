@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuideMe: Benchmarking Multi-Domain Task Guidance and Intervention in Streaming Video</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --accent: #7c3aed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.45rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 28px;
+            color: var(--text);
+        }
+
+        .authors {
+            font-size: 1.16rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .authors a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .authors a:hover {
+            text-decoration: underline;
+        }
+
+        .authors sup {
+            font-size: 0.65em;
+            color: var(--text);
+        }
+
+        .affiliations {
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 4px;
+            font-weight: 400;
+        }
+
+        .venue {
+            font-size: 1.3rem;
+            color: var(--text);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .note {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 28px;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .links a,
+        .links span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            background: var(--text);
+            color: #fff;
+        }
+
+        .links a:hover {
+            background: #334155;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .links span {
+            background: #94a3b8;
+            cursor: default;
+        }
+
+        .btn-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        section {
+            padding: 40px 0;
+        }
+
+        h2 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            margin-bottom: 22px;
+            text-align: center;
+        }
+
+        .abstract-text {
+            font-size: 1.03rem;
+            text-align: justify;
+            color: var(--text);
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            margin-top: 12px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .info-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .info-card h3 {
+            font-size: 1.08rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .info-card p,
+        .info-card li {
+            font-size: 0.96rem;
+            color: var(--text-secondary);
+        }
+
+        .info-card ul {
+            padding-left: 20px;
+        }
+
+        .highlight {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 24px;
+            border-left: 4px solid var(--accent);
+            background: #fff;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            color: var(--text-secondary);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 22px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 860px;
+            font-size: 0.9rem;
+        }
+
+        .result-table th,
+        .result-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .result-table th {
+            background: var(--bg-alt);
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .result-table td:first-child,
+        .result-table th:first-child {
+            text-align: left;
+        }
+
+        .result-table thead tr:nth-child(2) th {
+            text-align: center;
+        }
+
+        .result-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .group-row td {
+            background: #f1f5f9;
+            color: var(--text);
+            font-weight: 700;
+            text-align: left !important;
+        }
+
+        .ours-row td {
+            background: #eff6ff;
+            font-weight: 700;
+        }
+
+        .table-caption {
+            margin-top: 12px;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .figure-block {
+            margin-top: 28px;
+            text-align: center;
+        }
+
+        .figure-block img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .metric-table thead tr:first-child th:nth-child(3),
+        .metric-table thead tr:nth-child(2) th:nth-child(3),
+        .metric-table tbody td:nth-child(5) {
+            padding-right: 24px;
+        }
+
+        .metric-table thead tr:first-child th:nth-child(4),
+        .metric-table thead tr:nth-child(2) th:nth-child(4),
+        .metric-table tbody td:nth-child(6) {
+            padding-left: 24px;
+        }
+
+        .metric-table thead tr:first-child th:nth-child(2),
+        .metric-table tbody td:nth-child(2) {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .bibtex-wrapper {
+            position: relative;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .bibtex-copy-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .bibtex-copy-btn:hover {
+            background: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .bibtex-copy-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .bibtex-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .bibtex-box pre {
+            font-family: 'Courier New', monospace;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            white-space: pre;
+            margin: 0;
+            color: var(--text);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 1.55rem;
+            }
+
+            .authors {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="container">
+        <h1>GuideMe: Benchmarking Multi-Domain Task Guidance and Intervention in Streaming Video</h1>
+        <p class="authors">
+            <a href="https://fawnliu.github.io/">Fang Liu</a><sup>1</sup>, &nbsp;
+            <a href="https://jinpeng0528.github.io/">Jinpeng Chen</a><sup>2</sup>, &nbsp;
+            <a href="https://scholar.google.com/citations?user=2meBhbQAAAAJ&hl=en">Ke Xu</a><sup>1</sup>, &nbsp;
+            <a href="https://scholar.google.com/citations?user=eHWiGU8AAAAJ&hl=en">Yuhao Liu</a><sup>1</sup>, &nbsp;
+            <a href="https://scholar.google.com/citations?user=jI0LxMoAAAAJ&hl=en">Huankang Guan</a><sup>2</sup>, &nbsp;
+            <a href="https://lucky-lance.github.io/">Xudong Lu</a><sup>3</sup>, &nbsp;
+            Bo Yang<sup>2</sup>, &nbsp;
+            <br>
+            <a href="https://scholar.google.com/citations?user=C2iR3xUAAAAJ&hl=en">Gerhard Petrus Hancke</a><sup>1</sup>, &nbsp;
+            <a href="https://ruiliu-ai.github.io/">Rui Liu</a><sup>2,&dagger;</sup>, &nbsp;
+            <a href="https://scholar.google.com/citations?user=KilQqKYAAAAJ&hl=en">Rynson W.H. Lau</a><sup>1,4,&dagger;</sup>
+        </p>
+        <p class="affiliations">
+            <sup>1</sup>City University of Hong Kong &nbsp;&nbsp;
+            <sup>2</sup>Huawei Research &nbsp;&nbsp;
+            <br>
+            <sup>3</sup>Chinese University of Hong Kong &nbsp;&nbsp;
+            <sup>4</sup>City University of Hong Kong (Dongguan)
+        </p>
+        <p class="venue">ECCV 2026</p>
+        <p class="note"><sup>&dagger;</sup>Corresponding authors</p>
+        <div class="links">
+            <span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Paper (Coming Soon)
+            </span>
+            <a href="https://github.com/fawnliu/GuideMe">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                Code
+            </a>
+            <span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                Data (Coming Soon)
+            </span>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--bg-alt);">
+    <div class="container">
+        <h2>Abstract</h2>
+        <p class="abstract-text">
+            While multimodal Large Language Models (MLLMs) excel at offline video understanding, an interesting question of <em>how far they are from serving as a real-time procedural coach</em> remains unknown.
+            Such a role typically requires an MLLM to continuously monitor the execution, detect mistakes, and provide corrective guidance in a closed-loop interaction.
+            In this paper, we construct <strong>GuideMe</strong>, the first multi-domain streaming benchmark, enabling the evaluation of MLLMs in providing closed-loop interactive task guidance.
+            It comprises 2,458 videos spanning 224 hours across diverse domains, including cooking, object manipulation, daily-life guidance, and fitness, with 47,775 interaction samples covering next-step instructions, completion feedback, error detection, and corrective guidance.
+            To evaluate existing models on GuideMe, we design a three-facet assessment framework to measure representative MLLMs, consisting of temporal-semantic bipartite matching for sequence-level alignment, behavioral classification for intervention timing, and LLM-as-a-Judge for content quality.
+            Extensive experiments highlight a critical performance asymmetry: despite excelling at providing instructions, existing MLLMs consistently fail to identify execution errors and respond with corrective feedback.
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>GuideMe Benchmark</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">2,458</span>
+                <span class="stat-label">Videos</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">224</span>
+                <span class="stat-label">Hours</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">47,775</span>
+                <span class="stat-label">Interaction Samples</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">4</span>
+                <span class="stat-label">Task Domains</span>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>Dataset</th>
+                        <th>Domain</th>
+                        <th>#Videos</th>
+                        <th>Hours</th>
+                        <th>Step-level Instruction</th>
+                        <th>Timed Feedback</th>
+                        <th>Error Detection</th>
+                        <th>Action-specific Correction</th>
+                        <th>Closed-loop Interaction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Epic-Kitchen-100</td>
+                        <td>Cooking</td>
+                        <td>700</td>
+                        <td>100</td>
+                        <td>&check;</td>
+                        <td>&times;</td>
+                        <td>&times;</td>
+                        <td>&times;</td>
+                        <td>&times;</td>
+                    </tr>
+                    <tr>
+                        <td>COIN</td>
+                        <td>Diverse</td>
+                        <td>11,827</td>
+                        <td>476</td>
+                        <td>&check;</td>
+                        <td>&times;</td>
+                        <td>&times;</td>
+                        <td>&times;</td>
+                        <td>&times;</td>
+                    </tr>
+                    <tr>
+                        <td>HoloAssist</td>
+                        <td>Object Manip.</td>
+                        <td>2,221</td>
+                        <td>166</td>
+                        <td>&times;</td>
+                        <td>&times;</td>
+                        <td>&check;</td>
+                        <td>&check;</td>
+                        <td>&times;</td>
+                    </tr>
+                    <tr>
+                        <td>CaptainCook4D</td>
+                        <td>Cooking</td>
+                        <td>384</td>
+                        <td>94.5</td>
+                        <td>&times;</td>
+                        <td>&times;</td>
+                        <td>&check;</td>
+                        <td>&times;</td>
+                        <td>&times;</td>
+                    </tr>
+                    <tr>
+                        <td>QEVD-Fit-Coach</td>
+                        <td>Fitness</td>
+                        <td>223</td>
+                        <td>13.5</td>
+                        <td>&check;</td>
+                        <td>&check;</td>
+                        <td>&check;</td>
+                        <td>&check;</td>
+                        <td>&times;</td>
+                    </tr>
+                    <tr>
+                        <td>Assembly101</td>
+                        <td>Assembly</td>
+                        <td>4,321</td>
+                        <td>513</td>
+                        <td>&times;</td>
+                        <td>&times;</td>
+                        <td>&check;</td>
+                        <td>&check;</td>
+                        <td>&times;</td>
+                    </tr>
+                    <tr>
+                        <td>EgoPER</td>
+                        <td>Cooking</td>
+                        <td>386</td>
+                        <td>28</td>
+                        <td>&check;</td>
+                        <td>&times;</td>
+                        <td>&check;</td>
+                        <td>&times;</td>
+                        <td>&times;</td>
+                    </tr>
+                    <tr class="ours-row">
+                        <td>GuideMe</td>
+                        <td>Diverse</td>
+                        <td>2,458</td>
+                        <td>224</td>
+                        <td>&check;</td>
+                        <td>&check;</td>
+                        <td>&check;</td>
+                        <td>&check;</td>
+                        <td>&check;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="table-caption">Comparison of procedural video datasets. GuideMe supports closed-loop interactive task guidance across all five evaluation dimensions.</p>
+
+        <div class="content-grid" style="margin-top: 28px;">
+            <div class="info-card">
+                <h3>Domain Distribution</h3>
+                <p>GuideMe bridges everyday routines and more complex assistance scenarios. Home Life and Cooking form the largest portion of the benchmark, accounting for 38.4% and 23.4% of the videos, while technical domains such as Field Tech and IT Support contribute 38.2%.</p>
+            </div>
+            <div class="info-card">
+                <h3>Duration Distribution</h3>
+                <p>The videos range from 0.5 to 41.2 minutes, with an average duration of 5.5 minutes and a median of 3.6 minutes. This distribution covers concise step-level tasks while retaining long-form sequences for evaluating long-range temporal reasoning.</p>
+            </div>
+        </div>
+        <div class="figure-block">
+            <img src="imgs/video_distribution.png" alt="GuideMe video distribution">
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--bg-alt);">
+    <div class="container">
+        <h2>Task Formulation</h2>
+        <div class="content-grid">
+            <div class="info-card">
+                <h3>Online Streaming Assistance</h3>
+                <p>The assistant observes a continuous video stream causally and can only use visual evidence up to the current timestamp, together with the accumulated dialogue history.</p>
+            </div>
+            <div class="info-card">
+                <h3>Closed-Loop Interaction</h3>
+                <p>At each step, the assistant decides whether to remain silent or provide guidance. Its feedback can influence the user's subsequent actions within the same session.</p>
+            </div>
+            <div class="info-card">
+                <h3>Guidance Behaviors</h3>
+                <ul>
+                    <li>Next-step instruction</li>
+                    <li>Completion feedback</li>
+                    <li>Error detection</li>
+                    <li>Corrective guidance</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Evaluation Framework</h2>
+        <div class="content-grid">
+            <div class="info-card">
+                <h3>Temporal-Semantic Matching</h3>
+                <p>Measures sequence-level alignment by matching predicted guidance with ground-truth interventions in time and meaning.</p>
+            </div>
+            <div class="info-card">
+                <h3>Behavioral Classification</h3>
+                <p>Evaluates intervention timing and response behavior, including correct silence, false alarms, missing responses, and partly correct interventions.</p>
+            </div>
+            <div class="info-card">
+                <h3>LLM-as-a-Judge</h3>
+                <p>Assesses the content quality of open-ended guidance responses, focusing on semantic correctness and actionable feedback.</p>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="result-table metric-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2">Model</th>
+                        <th rowspan="2">Param.</th>
+                        <th colspan="3">Temporal Alignment</th>
+                        <th colspan="5">Response Behavior</th>
+                    </tr>
+                    <tr>
+                        <th>sPrecision &uarr;</th>
+                        <th>sRecall &uarr;</th>
+                        <th>sF1 &uarr;</th>
+                        <th>CS &uarr;</th>
+                        <th>NR &darr;</th>
+                        <th>FA &darr;</th>
+                        <th>PC &uarr;</th>
+                        <th>Score &uarr;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row">
+                        <td colspan="10">Proprietary Multimodal Models</td>
+                    </tr>
+                    <tr>
+                        <td>Doubao-Seed-1.8</td>
+                        <td>-</td>
+                        <td>30.6</td>
+                        <td><strong>47.5</strong></td>
+                        <td><strong>36.8</strong></td>
+                        <td>8.8</td>
+                        <td>6.1</td>
+                        <td>34.8</td>
+                        <td>44.2</td>
+                        <td>38.8</td>
+                    </tr>
+                    <tr>
+                        <td>GPT-5.2</td>
+                        <td>-</td>
+                        <td>30.2</td>
+                        <td>36.8</td>
+                        <td>32.5</td>
+                        <td>13.4</td>
+                        <td>16.8</td>
+                        <td>30.6</td>
+                        <td>39.2</td>
+                        <td>38.9</td>
+                    </tr>
+                    <tr>
+                        <td>Gemini 3 Pro</td>
+                        <td>-</td>
+                        <td><strong>39.3</strong></td>
+                        <td>36.9</td>
+                        <td>36.5</td>
+                        <td>17.5</td>
+                        <td>22.0</td>
+                        <td>19.0</td>
+                        <td>41.5</td>
+                        <td>44.8</td>
+                    </tr>
+                    <tr>
+                        <td>Gemini 3.1 Pro</td>
+                        <td>-</td>
+                        <td>29.3</td>
+                        <td>46.9</td>
+                        <td>35.7</td>
+                        <td>7.4</td>
+                        <td>6.3</td>
+                        <td>36.4</td>
+                        <td>49.9</td>
+                        <td>37.8</td>
+                    </tr>
+                    <tr class="group-row">
+                        <td colspan="10">Open-source Multimodal Models</td>
+                    </tr>
+                    <tr>
+                        <td>Qwen2.5-7B</td>
+                        <td>7B</td>
+                        <td>30.1</td>
+                        <td>30.9</td>
+                        <td>29.3</td>
+                        <td>19.7</td>
+                        <td>20.4</td>
+                        <td>25.4</td>
+                        <td>34.5</td>
+                        <td>37.5</td>
+                    </tr>
+                    <tr>
+                        <td>Qwen3-VL-8B</td>
+                        <td>8B</td>
+                        <td>29.7</td>
+                        <td>46.8</td>
+                        <td>35.7</td>
+                        <td>5.2</td>
+                        <td>6.7</td>
+                        <td>37.7</td>
+                        <td>50.5</td>
+                        <td>31.9</td>
+                    </tr>
+                    <tr>
+                        <td>Qwen3-VL-30B-A3B</td>
+                        <td>30B</td>
+                        <td>29.5</td>
+                        <td>46.9</td>
+                        <td>35.6</td>
+                        <td>6.7</td>
+                        <td>6.0</td>
+                        <td>36.5</td>
+                        <td>50.9</td>
+                        <td>33.3</td>
+                    </tr>
+                    <tr>
+                        <td>Qwen3.5-397B-A17B</td>
+                        <td>397B</td>
+                        <td>38.4</td>
+                        <td>20.2</td>
+                        <td>21.7</td>
+                        <td>35.2</td>
+                        <td>37.9</td>
+                        <td>7.9</td>
+                        <td>19.0</td>
+                        <td><strong>45.7</strong></td>
+                    </tr>
+                    <tr class="group-row">
+                        <td colspan="10">Open-source Multimodal Streaming Models</td>
+                    </tr>
+                    <tr>
+                        <td>VideoLLM-online</td>
+                        <td>8B</td>
+                        <td>22.3</td>
+                        <td>41.1</td>
+                        <td>28.7</td>
+                        <td>0.0</td>
+                        <td><strong>0.0</strong></td>
+                        <td>43.6</td>
+                        <td><strong>56.4</strong></td>
+                        <td>22.6</td>
+                    </tr>
+                    <tr>
+                        <td>Dispider</td>
+                        <td>7B</td>
+                        <td>1.0</td>
+                        <td>0.1</td>
+                        <td>0.1</td>
+                        <td><strong>43.6</strong></td>
+                        <td>56.3</td>
+                        <td><strong>0.0</strong></td>
+                        <td>0.1</td>
+                        <td>43.6</td>
+                    </tr>
+                    <tr>
+                        <td>StreamingVLM</td>
+                        <td>7B</td>
+                        <td>3.2</td>
+                        <td>0.3</td>
+                        <td>0.6</td>
+                        <td>42.9</td>
+                        <td>55.5</td>
+                        <td>0.7</td>
+                        <td>0.9</td>
+                        <td>42.9</td>
+                    </tr>
+                    <tr>
+                        <td>LiveStar</td>
+                        <td>8B</td>
+                        <td>20.7</td>
+                        <td>19.0</td>
+                        <td>19.1</td>
+                        <td>21.2</td>
+                        <td>24.4</td>
+                        <td>22.2</td>
+                        <td>32.3</td>
+                        <td>25.0</td>
+                    </tr>
+                    <tr>
+                        <td>MMDuet2</td>
+                        <td>3B</td>
+                        <td>3.3</td>
+                        <td>0.2</td>
+                        <td>0.4</td>
+                        <td>41.7</td>
+                        <td>57.9</td>
+                        <td>0.2</td>
+                        <td>0.2</td>
+                        <td>41.8</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="table-caption">Main evaluation results on GuideMe. sPrecision is the sum of matched semantic similarities divided by active non-silent predictions, measuring intervention relevance; sRecall is divided by non-silent ground-truth responses, measuring required-intervention coverage; sF1 is their harmonic mean.<br>CS: Correct Silent, NR: No Response, FA: False Alarm, PC: Partly Correct. Score is the average instance-level score: CS receives 100, FA and NR receive 0, and PC receives an LLM-as-a-Judge quality score scaled to 0-100.</p>
+    </div>
+</section>
+
+<section style="background: var(--bg-alt);">
+    <div class="container">
+        <h2>Key Finding</h2>
+        <p class="highlight">
+            Current MLLMs can often provide step-by-step instructions, but they struggle with the harder stages of interactive coaching: detecting execution errors and providing timely corrective feedback. GuideMe exposes this gap and provides a benchmark for developing more reliable real-time procedural assistants.
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>BibTeX</h2>
+        <div class="bibtex-wrapper">
+            <button class="bibtex-copy-btn" onclick="copyBibtex()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span id="copy-text">Copy</span>
+            </button>
+            <div class="bibtex-box">
+<pre id="bibtex-content">Coming soon...</pre>
+            </div>
+        </div>
+        <p style="margin-top: 16px; font-size: 0.9rem; color: var(--text-secondary); text-align: center;">If you have any questions, please contact me at <a href="mailto:fawnliu2333@gmail.com" style="color: var(--primary);">fawnliu2333@gmail.com</a>.</p>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" style="color: var(--primary);">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" style="color: var(--primary);">Nerfies</a> project page.</p>
+    </div>
+</footer>
+
+<script>
+function copyBibtex() {
+    const text = document.getElementById('bibtex-content').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-text');
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>
