@@ -306,8 +306,9 @@
 
         .qualitative-video {
             display: block;
-            width: 100%;
+            width: auto;
             max-width: 760px;
+            max-height: 460px;
             margin: 0 auto 28px;
             border-radius: 14px;
             background: #0f172a;
@@ -1139,7 +1140,7 @@
                 <button class="example-tab" type="button" data-example-index="3">Example 4</button>
             </div>
             <div class="qualitative-content">
-                <video id="qualitative-video" class="qualitative-video" src="imgs/0a01d7d0-11d6-4af6-abd9-2025656d3c63.mp4" controls muted playsinline></video>
+                <video id="qualitative-video" class="qualitative-video" src="imgs/demo_fitness.mp4" controls muted playsinline></video>
                 <div class="timeline-panel">
                 <div class="timeline-track shared-timeline" id="qualitative-timeline">
                     <span class="timeline-playhead" id="timeline-playhead"></span>
@@ -1150,31 +1151,31 @@
                 <div class="response-grid">
                     <div class="response-row user-query">
                         <div class="response-name">User Query</div>
-                        <div class="response-text" data-response="query">You're my training buddy. Comment on my workout performance and correct me whenever it's necessary.</div>
+                        <div class="response-text" data-response="query">You're my training partner. Give me feedback on my movements and correct me when necessary.</div>
                     </div>
                     <div class="response-row gt">
                         <div class="response-name">Ground Truth</div>
                         <div class="response-text" data-response="gt">Silent</div>
                     </div>
                     <div class="response-row">
-                        <div class="response-name">Model 1</div>
+                        <div class="response-name">Doubao-Seed-1.8</div>
                         <div class="response-text" data-response="model1">Tell me what exercise you are doing right now, then start your first set.</div>
                     </div>
                     <div class="response-row">
-                        <div class="response-name">Model 2</div>
+                        <div class="response-name">GPT-5.2</div>
                         <div class="response-text" data-response="model2">Silent</div>
                     </div>
                     <div class="response-row">
-                        <div class="response-name">Model 3</div>
-                        <div class="response-text" data-response="model3">What exercise are you doing right now?</div>
+                        <div class="response-name">Gemini 3.1 Pro</div>
+                        <div class="response-text" data-response="model3">Silent</div>
                     </div>
                     <div class="response-row">
-                        <div class="response-name">Model 4</div>
+                        <div class="response-name">Qwen2.5-7B</div>
                         <div class="response-text" data-response="model4">Silent</div>
                     </div>
                     <div class="response-row">
-                        <div class="response-name">Model 5</div>
-                        <div class="response-text" data-response="model5">Keep the camera framed so I can see your full body.</div>
+                        <div class="response-name">MMDuet2</div>
+                        <div class="response-text" data-response="model5">Silent</div>
                     </div>
                 </div>
                 </div>
@@ -1207,58 +1208,450 @@
 
 <script>
 const qualitativeEvents = [
-    { time: 0, gt: "Silent", models: ["Tell me what exercise you’re doing right now (and your goal—strength, hypertrophy, fat loss, or endurance), then start your first set and keep the camera framed so I can see your full body and the weight.", "Silent", "Silent", "Silent", "Silent"] },
-    { time: 1, gt: "Silent", models: ["What exercise are you doing right now, and what’s your goal (strength, hypertrophy, endurance, form rehab)? Also tell me your equipment (bodyweight/dumbbells/barbell).", "Silent", "Silent", "Silent", "Silent"] },
-    { time: 2, gt: "Silent", models: ["Tell me what exercise you’re doing first (and your goal for today—form, strength, or endurance), then start the set so I can cue you rep by rep.", "Silent", "Silent", "Silent", "Silent"] },
-    { time: 3, gt: "Silent", models: ["Tell me what exercise you’re doing right now (and your goal: strength, hypertrophy, endurance, or fat loss), then start your first set and keep your whole body in view.", "Silent", "Silent", "Silent", "Silent"] },
-    { time: 4, gt: "Silent", models: ["What exercise are you doing right now, and what’s your goal for this set (e.g., 10 reps, form focus, speed)?", "Silent", "Silent", "Silent", "Silent"] },
-    { time: 5, gt: "Silent", models: ["Tell me what exercise you’re doing right now (and your setup/goal—strength, hypertrophy, or endurance). Then start your first set and keep your whole body in view so I can cue form in real time.", "Silent", "Silent", "Silent", "Silent"] },
-    { time: 6, gt: "Silent", models: ["What exercise are you doing right now, and what’s your goal for today (strength, hypertrophy, endurance, form)?", "Silent", "Silent", "Silent", "Silent"] },
-    { time: 12, gt: "First up are jumping jacks!", models: ["What exercise are you doing right now (and your target reps/sets)? Position the camera so I can see your whole body and the working joint(s) side-on.", "First up are jumping jacks!", "Silent", "Let us begin with jumping jacks.", "Start with jumping jacks."] },
-    { time: 16, gt: "Let's get started!", models: ["Silent", "Let's get started!", "Start now.", "Silent", "Begin the workout."] },
-    { time: 20, gt: "Come on! Jumping Jack, Jumping Jack, that's what I gotta do now!", models: ["Silent", "Keep going with jumping jacks.", "Silent", "Jumping jacks now.", "Nice start."] },
-    { time: 23, gt: "There is still time! Come on!", models: ["Silent", "There is still time! Come on!", "Keep going.", "Silent", "Push through."] },
-    { time: 25, gt: "Yes! That's it!", models: ["Silent", "Yes! That's it!", "Good job.", "Silent", "Nice rhythm."] },
-    { time: 27, gt: "Wow! I love the range of motion you have here!", models: ["Silent", "Great range of motion.", "Silent", "Nice form.", "Keep it up."] },
-    { time: 30, gt: "That is awesome! Keep it up!", models: ["Silent", "That is awesome! Keep it up!", "Keep it up.", "Silent", "Great effort."] },
-    { time: 36, gt: "Moving on to high knees!", models: ["Yes! You're doing it! Keep going. Great stamina.", "Moving on to high knees!", "Next exercise: high knees.", "Silent", "Great job. Transition to high knees now."] },
-    { time: 38, gt: "That's it!", models: ["Nice! Keep your chest tall and drive your knees up to hip height.", "That's it!", "Keep your chest tall.", "Silent", "Good pace."] },
-    { time: 39, gt: "Try to keep your hands straight in front or at your sides!", models: ["There is still time! Come on!", "Keep your hands straight in front or at your sides.", "Silent", "Mind your arms.", "Keep moving."] },
-    { time: 43, gt: "Try to get those knees higher! Mind your hands!", models: ["Silent", "Bring your knees higher toward hip level.", "Keep moving and lift your knees a bit more.", "Your pace is good, but raise the knees higher.", "Silent"] },
-    { time: 50, gt: "Your knees are still too low!", models: ["Nice! Keep pushing!Great job! Next up are squats!", "Knees are still low; drive them up toward your hands.", "Silent", "Try to lift each knee higher before switching.", "Keep your torso upright and knees high."] },
-    { time: 55, gt: "Aim higher next time and try to keep your hands straight in front or at your sides!", models: ["Try to get your knees as high as your hip! Keep trying!Push it! push it! push it! You're doing awesome! 🎉", "Aim higher next time.", "Keep your hands straight.", "Silent", "Good effort."] },
-    { time: 58, gt: "Moving on to squats!", models: ["Silent", "Move on to squats.", "Transition to squats now.", "Great work; next is squats.", "Prepare for squats and keep your feet shoulder-width apart."] },
-    { time: 61, gt: "Yes! That's it!", models: ["Try to keep your knees behind your toes!", "Yes! That's it!", "Good squat start.", "Silent", "Keep your form."] },
-    { time: 64, gt: "Love your form! Nice deep squats!", models: ["Try to go deeper! Bend those knees, sit down! Keep your back straight!", "Good depth. Keep your chest lifted.", "Try to keep your knees tracking over your toes.", "Nice squat depth; keep the rhythm.", "Silent"] },
-    { time: 67, gt: "5 reps! Keep it up!", models: ["Try to keep your back straight! Don't bend forward too much!", "5 reps! Keep it up!", "Keep your back straight.", "Silent", "Nice reps."] },
-    { time: 70, gt: "Keep going!", models: ["Silent", "Keep going!", "Keep the pace.", "Silent", "Stay steady."] },
-    { time: 72, gt: "Keep up the pace! Don't slow down!", models: ["Try to keep your arms straight in front of you while squatting!", "Keep up the pace!", "Do not slow down.", "Silent", "Keep your rhythm."] },
-    { time: 77, gt: "10", models: ["Try to keep your back straight! Great job on the depth!", "10", "Ten reps.", "Silent", "Great job."] },
-    { time: 81, gt: "Moving on to pushups!", models: ["Keep up! Don't lose your momentum!", "Next up are pushups.", "Move into pushups now.", "Silent", "Transition to pushups and keep your body straight."] },
-    { time: 85, gt: "Yes! That's it!", models: ["Keep your back straight! You're arching too much!", "Good start. Keep a straight line from shoulders to heels.", "Lower your chest with control.", "Try not to let your hips sag.", "Silent"] },
-    { time: 87, gt: "2", models: ["Try to keep your body in a straight line and don't stick your butt up.", "2", "Two.", "Silent", "Keep your body straight."] },
-    { time: 89, gt: "3", models: ["3", "3", "Three.", "Silent", "Good."] },
-    { time: 91, gt: "4", models: ["4", "4", "Four.", "Silent", "Keep going."] },
-    { time: 93, gt: "5", models: ["5 reps! You can do it!", "5", "Five.", "Silent", "Nice work."] },
-    { time: 95, gt: "6", models: ["6", "6", "Six.", "Silent", "Keep pushing."] },
-    { time: 98, gt: "7", models: ["Try to keep a straighter line from shoulders to heels—don’t let your hips sag.", "7", "Seven.", "Silent", "Keep your hips aligned."] },
-    { time: 107, gt: "Moving on to quad stretch left!", models: ["89Try to keep your back straight!", "Switch to left quad stretch.", "Hold your left foot and keep your balance.", "Silent", "Now stretch your left quad."] },
-    { time: 109, gt: "Great, now that you're set, let's stretch the front of that leg out.", models: ["Silent", "Stretch the front of that leg.", "Hold the left quad stretch.", "Silent", "Keep your balance."] },
-    { time: 112, gt: "Yes! Stretch out that quad.", models: ["Keep holding it! Almost done!", "Stretch out that quad.", "Keep holding.", "Silent", "Good stretch."] },
-    { time: 117, gt: "Looks good. Now focus on keeping your balance!", models: ["Keep your body straight. Don't lean over.", "Focus on keeping your balance.", "Keep your body straight.", "Silent", "Do not lean over."] },
-    { time: 121, gt: "Love it! Keep it going!", models: ["Nice! Keep holding and breathe.", "Love it! Keep it going!", "Keep holding.", "Silent", "Breathe steadily."] },
-    { time: 126, gt: "Amazing work!", models: ["Moving on to quad stretch right!", "Amazing work!", "Great job.", "Silent", "Nice work."] },
-    { time: 128, gt: "Moving on to quad stretch right!", models: ["Now switch legs! Quad stretch right.", "Switch to the right quad stretch.", "Good. Change to the other side.", "Move to quad stretch right.", "Silent"] },
-    { time: 131, gt: "Yes! Stretch out that quad.", models: ["Nice! Grab that ankle and keep your knees close together.", "Stretch out that quad.", "Keep your knees close together.", "Silent", "Good stretch."] },
-    { time: 134, gt: "Keep your core tight to maintain your balance!", models: ["Great, now focus on your balance and keep your knee pointing down.", "Keep your core tight.", "Maintain your balance.", "Silent", "Keep the knee pointing down."] },
-    { time: 136, gt: "Yes! That it! Do you feel the burn?", models: ["You're doing great! Keep stretching.", "Do you feel the burn?", "Keep stretching.", "Silent", "Great job."] },
-    { time: 139, gt: "Looking great! Keep going!", models: ["Try to pull that foot a bit closer to your butt.", "Looking great! Keep going!", "Pull your foot closer.", "Silent", "Keep balance."] },
-    { time: 143, gt: "Good job!", models: ["Amazing work! Keep going!", "Good job!", "Nice work.", "Silent", "Almost done."] },
-    { time: 150, gt: "That's the end of the session.", models: ["Silent", "Great job, session complete.", "That is the end of the workout.", "Nice work today.", "Workout finished. Cool down and breathe."] }
+    {
+        "time": 0,
+        "gt": "Silent",
+        "models": [
+            "Go ahead and perform your first movement—I’ll give you real-time feedback!",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 1,
+        "gt": "Silent",
+        "models": [
+            "Go ahead with your first movement, and I’ll give you feedback on it.",
+            "What exercise are you doing right now, and what’s your target (strength, hypertrophy, rehab, technique)?\n\nAlso set up the camera so I can see: full body, side view if possible, including feet and head.",
+            "Sure, let's get started. Go ahead whenever you're ready.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 11,
+        "gt": "First up are jumping jacks!",
+        "models": [
+            "Great job on that arm swing and step coordination! Now, try to keep your torso more upright while shifting your weight for better balance.",
+            "What exercise are you doing right now (e.g., squat, push-up, deadlift), and what’s your goal (strength, form, rehab)?",
+            "No, don't touch your head. Let's keep both hands on your hips to prepare.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 15,
+        "gt": "You're only moving your arms?",
+        "models": [
+            "Perfect form on that jumping jack! Keep it up.",
+            "Silent",
+            "Silent",
+            "Spread your legs and raise your arms!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 18,
+        "gt": "Move your arms and legs together!",
+        "models": [
+            "Now you're only moving your legs?",
+            "Silent",
+            "You have to jump and move both your arms and legs at the same time.",
+            "Jump your legs apart!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 22,
+        "gt": "Don't stop with the jumps! I wanna see you jumping and moving those arms.",
+        "models": [
+            "Great job! Now let's move on to high knees.",
+            "Silent",
+            "Lift your arms above your head!",
+            "Great arm movement! Now add the leg motion.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 25,
+        "gt": "I am still waiting for you to start jumping!",
+        "models": [
+            "Keep jumping and moving those arms together!",
+            "Nice—keep a steady rhythm. Next step: soften your knees on each landing and keep your core tight.",
+            "Now do the full movement. Move your legs and your arms at the same time.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 33,
+        "gt": "Moving on to butt kickers!",
+        "models": [
+            "Good job finishing the jumping jacks! Next up: high knees.",
+            "Silent",
+            "Make sure you're moving your arms and jumping at the same time!",
+            "Jump higher and keep going!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 36,
+        "gt": "Are you sure that's the right exercise?",
+        "models": [
+            "Good job kicking those heels back!",
+            "Silent",
+            "Nice form on those butt kickers. Now let's switch to high knees!",
+            "Lift your knees higher!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 40,
+        "gt": "It's time for butt kickers!",
+        "models": [
+            "Good job, that's the right move!",
+            "Kick your heels back to your butt and keep your chest up.",
+            "You're doing high knees right now. For butt kickers, you need to kick your heels back towards your glutes.",
+            "First up are jumping jacks! Go ahead and do another one.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 42,
+        "gt": "Let's get started with butt kickers!",
+        "models": [
+            "Silent",
+            "Bring those heels all the way up!",
+            "You are doing high knees. To do butt kickers, alternate lifting your feet towards your buttocks while jogging in place.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 46,
+        "gt": "You still have time! Let's go!",
+        "models": [
+            "Let's do butt kickers! Lift your heels toward your glutes.",
+            "Silent",
+            "For butt kickers, you need to jog in place, bringing your heels up to your glutes.",
+            "Lift one knee towards your glutes and then switch!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 50,
+        "gt": "Let's try harder next time!",
+        "models": [
+            "You're doing squats, not butt kickers.",
+            "Silent",
+            "You're doing squats, but we're supposed to be doing butt kickers right now!",
+            "Keep going! Kick those heels up!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 55,
+        "gt": "Moving on to walking lunges!",
+        "models": [
+            "That's all the time we have for butt kickers. Moving on to high knees!",
+            "Now, high knees!",
+            "Those are squats! Do butt kickers!",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 58,
+        "gt": "Yes, that's it. Keep it coming.",
+        "models": [
+            "It's time for walking lunges!",
+            "Why are you just standing there?",
+            "Let's see those walking lunges!",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 61,
+        "gt": "Don't stop after just one rep! Keep going!",
+        "models": [
+            "Great job! Keep those lunges going.",
+            "You're leaning too far forward. Keep your chest up.",
+            "Silent.",
+            "Great form! Continue!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 64,
+        "gt": "Let's do some lunges! Come on!",
+        "models": [
+            "You still have time to do more lunges!",
+            "Make sure your knees are aligned and not going over your toes.",
+            "I am still waiting for you to keep going with the lunges!",
+            "Great form! Another lunge!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 69,
+        "gt": "Still waiting for you to start!",
+        "models": [
+            "Silent",
+            "You're doing great. Stand tall and take a long step forward for each lunge.",
+            "Keep it up, you got this!",
+            "Great form! Another one!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 81,
+        "gt": "Moving on to mountain climbers!",
+        "models": [
+            "Let's do better next time!",
+            "When you lunge, make sure your knee doesn't go past your toes!",
+            "Are those lunges or kicks? Step forward and bend both knees, lowering your hips until both knees are bent at a 90-degree angle.",
+            "Take a big step forward!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 88,
+        "gt": "Silent",
+        "models": [
+            "You're doing great! Keep those knees moving!",
+            "Your hips are too high—bring them down into a straight plank line, then drive your knees in faster.",
+            "Let's see some movement! Bring your knees to your chest!",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 90,
+        "gt": "Silent",
+        "models": [
+            "Yes, that's it. Keep those knees moving!",
+            "Hips down, keep a straight line from shoulders to heels. Now drive your knees in fast.",
+            "You're not doing a plank! You should be doing mountain climbers. Bring your knees to your chest.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 91,
+        "gt": "Silent",
+        "models": [
+            "Are you sure that's the right exercise?",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 92,
+        "gt": "Silent",
+        "models": [
+            "Let's get started with mountain climbers!",
+            "Silent",
+            "Silent",
+            "Great pace! Keep it up!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 93,
+        "gt": "Silent",
+        "models": [
+            "Let's start mountain climbers! Get into position and drive those knees up.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 96,
+        "gt": "Silent",
+        "models": [
+            "Let's get started with mountain climbers!",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 103,
+        "gt": "Moving on to quad stretch left!",
+        "models": [
+            "Let's get started with mountain climbers!",
+            "Get down in a plank position, and drive those knees forward!",
+            "You were supposed to do mountain climbers.",
+            "Great pace! Keep it up!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 109,
+        "gt": "Silent",
+        "models": [
+            "Keep that stretch going! Hold it longer.",
+            "You should be stretching your left leg!",
+            "Are you sure that's the left quad stretch? Pull your left foot toward your butt.",
+            "Good stretch! Switch to the right now.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 110,
+        "gt": "Silent",
+        "models": [
+            "Yes, that's it! Keep holding that stretch.",
+            "Silent",
+            "Silent",
+            "Good stretch! Switch to the right now.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 113,
+        "gt": "Silent",
+        "models": [
+            "Great job holding that quad stretch! Moving on to quad stretch right!",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 114,
+        "gt": "Silent",
+        "models": [
+            "Yes, that's it! Keep holding that stretch.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 115,
+        "gt": "Silent",
+        "models": [
+            "Moving on to quad stretch right!",
+            "Silent",
+            "Silent",
+            "Good stretch. Switch to the right now!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 116,
+        "gt": "Silent",
+        "models": [
+            "Yes, that's it. Keep it coming.",
+            "Good! Keep that knee pointing down. Hold it.",
+            "That doesn't look quite right! Try standing on one leg and bending your knee back to hold your foot.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 122,
+        "gt": "Moving on to quad stretch right!",
+        "models": [
+            "Moving on to quad stretch right!",
+            "Silent",
+            "I said quad stretch left! You're doing something else.",
+            "Great stretch! Now switch to the right leg!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 128,
+        "gt": "Silent",
+        "models": [
+            "Moving on to side stretch left!",
+            "Moving on to hamstring stretch!",
+            "You're doing high knees, but it's time for a right quad stretch. Pull your right foot behind you!",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 129,
+        "gt": "Silent",
+        "models": [
+            "Moving on to side lunges!",
+            "Moving on to hamstring stretch left!",
+            "Are you sure that's a quad stretch? That looks more like a knee hug. Let's do the quad stretch for the right leg.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 130,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Moving on to standing hamstring stretch left!",
+            "That's not right. Grab your foot behind you, not in front of you. That's a quad stretch.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 132,
+        "gt": "Silent",
+        "models": [
+            "Moving on to side stretch left!",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 140,
+        "gt": "Silent",
+        "models": [
+            "Moving on to side lunges!",
+            "Moving on to calf raises!",
+            "Silent",
+            "Great stretch! Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 141,
+        "gt": "Silent",
+        "models": [
+            "Moving on to side lunges!",
+            "Moving on to standing hamstring stretch left!",
+            "You're not doing quad stretches! Pull your heel to your glute instead of your knee to your chest!",
+            "Great stretch! Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 147,
+        "gt": "That's the end of the session.",
+        "models": [
+            "Moving on to side shuffle left!",
+            "Moving on to hamstring stretch!",
+            "Silent",
+            "Great stretch! Silent",
+            "Silent"
+        ]
+    }
 ];
 
-const qualitativeVideoPath = 'imgs/0a01d7d0-11d6-4af6-abd9-2025656d3c63.mp4';
-const qualitativeQuery = "You're my training buddy. Comment on my workout performance and correct me whenever it's necessary.";
+const qualitativeVideoPath = 'imgs/demo_fitness.mp4';
+const qualitativeQuery = "You're my training partner. Give me feedback on my movements and correct me when necessary.";
 
 function makeExampleVariant(exampleId) {
     return qualitativeEvents.map((event) => {
