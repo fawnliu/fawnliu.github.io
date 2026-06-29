@@ -442,6 +442,11 @@
             box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
         }
 
+        .timeline-event.error {
+            background: #991b1b;
+            box-shadow: 0 0 0 4px rgba(153, 27, 27, 0.16);
+        }
+
         .timeline-event.pred {
             background: var(--accent);
             box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.14);
@@ -521,8 +526,11 @@
         .timeline-event.active {
             width: 17px;
             height: 17px;
-            background: var(--accent);
             box-shadow: 0 0 0 6px rgba(124, 58, 237, 0.16);
+        }
+
+        .timeline-event.error.active {
+            box-shadow: 0 0 0 6px rgba(153, 27, 27, 0.2);
         }
 
         .timeline-playhead {
@@ -540,6 +548,11 @@
             display: grid;
             gap: 10px;
             margin-top: 24px;
+        }
+
+        .qualitative-query {
+            display: block;
+            margin-bottom: 18px;
         }
 
         .response-row {
@@ -575,6 +588,12 @@
         }
 
         .response-row.user-query .response-text {
+            background: #f5f3ff;
+            border-color: rgba(124, 58, 237, 0.22);
+            color: var(--text);
+        }
+
+        .qualitative-query .response-text {
             background: #f5f3ff;
             border-color: rgba(124, 58, 237, 0.22);
             color: var(--text);
@@ -1140,7 +1159,13 @@
                 <button class="example-tab" type="button" data-example-index="3">Example 4</button>
             </div>
             <div class="qualitative-content">
-                <video id="qualitative-video" class="qualitative-video" src="imgs/demo_fitness.mp4" controls muted playsinline></video>
+                <div class="qualitative-query">
+                    <div class="response-text">
+                        <strong>User Query:</strong>
+                        <span data-response="query">I'm going to make some oatmeal. Can you walk me through the steps and let me know if I make any mistakes along the way?</span>
+                    </div>
+                </div>
+                <video id="qualitative-video" class="qualitative-video" src="imgs/egoper.mp4" controls muted playsinline></video>
                 <div class="timeline-panel">
                 <div class="timeline-track shared-timeline" id="qualitative-timeline">
                     <span class="timeline-playhead" id="timeline-playhead"></span>
@@ -1149,17 +1174,13 @@
                 </div>
                 <span id="current-response-time" style="display: none;">0s</span>
                 <div class="response-grid">
-                    <div class="response-row user-query">
-                        <div class="response-name">User Query</div>
-                        <div class="response-text" data-response="query">You're my training partner. Give me feedback on my movements and correct me when necessary.</div>
-                    </div>
                     <div class="response-row gt">
                         <div class="response-name">Ground Truth</div>
                         <div class="response-text" data-response="gt">Silent</div>
                     </div>
                     <div class="response-row">
                         <div class="response-name">Doubao-Seed-1.8</div>
-                        <div class="response-text" data-response="model1">Tell me what exercise you are doing right now, then start your first set.</div>
+                        <div class="response-text" data-response="model1">Silent</div>
                     </div>
                     <div class="response-row">
                         <div class="response-name">GPT-5.2</div>
@@ -1207,7 +1228,800 @@
 </footer>
 
 <script>
-const qualitativeEvents = [
+const qualitativeExample1Events = [
+    {
+        "time": 0,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 2,
+        "gt": "Sure! Start by measuring 4 tablespoons of quick-cook oats and putting them in a bowl.",
+        "models": [
+            "First, measure out your desired amount of rolled oats (typically ½ cup per serving) and add them to a small saucepan (for stovetop cooking) or a microwave-safe bowl (for microwave preparation). Go ahead and complete that step now!",
+            "Start by measuring **1/2 cup rolled oats** and **1 cup water (or milk)**. Pour both into a microwave-safe bowl or a small pot.",
+            "Sure! To start, place an empty bowl on the scale.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 9,
+        "gt": "Silent",
+        "models": [
+            "Great start! You’ve added 2 tablespoons of oats so far—add 2 more to reach the 4-tablespoon amount.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 19,
+        "gt": "The oats are ready. Now, go ahead and measure 1/2 cup of water.",
+        "models": [
+            "Perfect, you’ve measured the oats correctly! Now add ½ cup of hot water or milk to the bowl with the oats.",
+            "Silent",
+            "Great! Now, pour 2 tablespoons of water into the bowl with the oats.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 27,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 35,
+        "gt": "Done with the water. Next, pour that water into the bowl with the oats.",
+        "models": [
+            "Now pour the measured water into the bowl with the oats.",
+            "Add the 1/2 cup of water into the bowl with the oats.",
+            "That looks like 1/2 cup. Now, pour the water into the bowl with the oats.",
+            "Great! Next, heat the water in a microwave-safe container for about 30 seconds.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 44,
+        "gt": "Wait a second—it looks like you added the water into a different bowl. Please transfer that water into the bowl with the oats before we continue.",
+        "models": [
+            "Oops, you poured the water into the wrong bowl. Please pour that water into the bowl that has the oats in it.",
+            "Good pour. Now microwave the bowl for about 1 minute.",
+            "Oops, you poured the water into the empty bowl. Please pour it into the bowl with the oats.",
+            "Good job! Now, add 1 tablespoon of butter and stir until the oats are well coated.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 54,
+        "gt": "Great, you've moved the water to the correct bowl.",
+        "models": [
+            "Great, the water is now with the oats. Now, go ahead and stir the mixture well.",
+            "Good fix. Now stir the oats and water together briefly (5–10 seconds).",
+            "Perfect! Now, pop that bowl into the microwave for about 1.5 to 2 minutes.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 67,
+        "gt": "Now, put it in the microwave for 90 seconds.",
+        "models": [
+            "Perfect! The bowl is in the microwave. Now set it for 1 minute and 30 seconds to cook the oats.",
+            "Now microwave the bowl for 1 minute (watch it so it doesn’t boil over).",
+            "The bowl is in the microwave. Now set it to run for 1.5 to 2 minutes.",
+            "Now, add 1 tablespoon of butter and a pinch of salt to the bowl.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 80,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 93,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 103,
+        "gt": "Finished microwaving the oatmeal.",
+        "models": [
+            "Silent",
+            "Careful—you set it for 9:00, not 1:30. Please change it to 1 minute 30 seconds and start it.",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 114,
+        "gt": "Add a handful of raisins to the bowl.",
+        "models": [
+            "Great, you've taken the oatmeal out of the microwave. Next, stir the oatmeal well to mix it evenly.",
+            "Now stir it well with a spoon.",
+            "Now, add a small spoonful of honey to your oatmeal.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 125,
+        "gt": "The raisins are in. Now, give it a good stir with a spoon.",
+        "models": [
+            "Great, raisins added. Now, add a few walnuts to the bowl.",
+            "Now stir the oatmeal well with a spoon.",
+            "Raisins are in. Now add some nuts.",
+            "Stir the oatmeal to mix in the raisins.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 132,
+        "gt": "Silent",
+        "models": [
+            "Great, you've stirred the oatmeal well. Your oatmeal is ready to enjoy!",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 140,
+        "gt": "All stirred up!",
+        "models": [
+            "Perfectly stirred! Your oatmeal is ready to enjoy.",
+            "Now let it sit for 1 minute to thicken.",
+            "You used a knife instead of a spoon. Please use a spoon to stir the oatmeal.",
+            "Stirred well. Enjoy your oatmeal!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 146,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 154,
+        "gt": "Put it back in the microwave for another 30 seconds.",
+        "models": [
+            "Great job! Your oatmeal is ready to enjoy.",
+            "Now let it sit for 1 minute to thicken a bit.",
+            "Silent.",
+            "Taste and add more sweetener if needed.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 161,
+        "gt": "Silent",
+        "models": [
+            "Great, the oatmeal is done microwaving again. Take it out and you're ready to enjoy!",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 166,
+        "gt": "Silent",
+        "models": [
+            "Perfect, the microwave is done. Now take the bowl out carefully.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 170,
+        "gt": "Silent",
+        "models": [
+            "You set the microwave for 60 seconds instead of 30. Let's adjust it to 30 seconds to avoid overcooking.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 171,
+        "gt": "Silent",
+        "models": [
+            "Whoa, that's way too long! The microwave is set for over 5 minutes. Please adjust the time to 30 seconds and start it again.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 182,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 189,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 196,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 197,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 200,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 203,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 221,
+        "gt": "That's done.",
+        "models": [
+            "Silent",
+            "Take it out and let it cool for about a minute, then you’re ready to eat.",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 229,
+        "gt": "Silent",
+        "models": [
+            "Great, you've taken the oatmeal out of the microwave.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 235,
+        "gt": "Stir the mixture one more time using your spoon.",
+        "models": [
+            "Now, stir the oatmeal again to mix everything well.",
+            "Let it sit for 1 minute to cool slightly.",
+            "Great! Your oatmeal is ready. You can add some honey if you'd like, or just enjoy it as is.",
+            "Remove it from the microwave and let it cool for a few seconds.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 249,
+        "gt": "Perfectly stirred.",
+        "models": [
+            "Perfectly stirred! Your oatmeal is ready to enjoy.",
+            "Silent",
+            "Perfect, your oatmeal is ready! Enjoy!",
+            "Add a scoop of your favorite topping.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 254,
+        "gt": "Now, sprinkle some cinnamon over the bowl.",
+        "models": [
+            "Now, add a drizzle of honey to the oatmeal.",
+            "Now let it sit for about 1 minute to thicken.",
+            "Next, add a drizzle of honey to the oatmeal.",
+            "Serve and enjoy your oatmeal!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 264,
+        "gt": "Cinnamon is on. For the final touch, drizzle some honey into the bowl.",
+        "models": [
+            "Cinnamon added nicely.",
+            "Looks good. Next, let it cool for about 1 minute, then take a bite to check the temperature.",
+            "Looks good. Now, drizzle a bit of honey over the top.",
+            "Cinnamon sprinkled. Enjoy your oatmeal!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 281,
+        "gt": "And you're finished! Enjoy your oatmeal.",
+        "models": [
+            "Honey is added. Your oatmeal is ready to enjoy!",
+            "Done—your oatmeal is ready to eat.",
+            "Looks delicious! Enjoy your oatmeal.",
+            "Honey is drizzled. Enjoy your oatmeal!",
+            "Silent"
+        ]
+    }
+];
+
+const qualitativeExample1ErrorTimestamps = new Set([
+    44 // Water was added into the wrong bowl.
+]);
+
+const qualitativeExample1VideoPath = 'imgs/egoper.mp4';
+const qualitativeExample1Query = "I'm going to make some oatmeal. Can you walk me through the steps and let me know if I make any mistakes along the way?";
+
+const qualitativeExample2Events = [
+    {
+        "time": 0,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 4,
+        "gt": "Sounds good! Let's start by grabbing a microwave-safe mug.",
+        "models": [
+            "First, grab a microwave-safe mug to start your pizza base.",
+            "Yes. Step 1: In a microwave-safe mug, mix **4 tbsp flour + 1/8 tsp baking powder + 1/8 tsp salt**. Add **3 tbsp milk + 1 tbsp oil**, then stir until smooth.",
+            "Of course! Let's get started. First, grab a microwave-safe mug.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 11,
+        "gt": "Great, you've got your mug. Now, measure out 1/8 teaspoon of baking powder and add it in.",
+        "models": [
+            "Perfect, you have your mug ready! Now let's make the crust batter: add 2 tablespoons of flour, 1 tablespoon of baking powder, a pinch of salt, and 2 tablespoons of water into the mug, then stir until smooth.",
+            "Silent",
+            "Perfect. Next, add 4 tablespoons of all-purpose flour to the mug.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 37,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 48,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 49,
+        "gt": "Silent",
+        "models": [
+            "Good job adding the baking powder! Next, add 1/4 teaspoon of salt to the mug.",
+            "Silent",
+            "Perfect. Next, add a pinch of baking soda.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 50,
+        "gt": "Silent",
+        "models": [
+            "Good job adding the baking powder! Next, add 1/4 teaspoon of salt to the mug.",
+            "Silent",
+            "You've got the baking powder! Next, add 1/16 of a teaspoon of baking soda to the mug.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 51,
+        "gt": "Silent",
+        "models": [
+            "Perfect, baking powder added. Now, add 1/4 teaspoon of salt to the mug.",
+            "I can’t see your video feed yet. Tell me when the baking powder is in the mug, or share what you’re seeing, and I’ll guide the next step.",
+            "That looks like 1/8 teaspoon. Go ahead and add 1/16 teaspoon of baking soda to the mug next.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 61,
+        "gt": "Perfect. Next, add 4 tablespoons of flour to the mug.",
+        "models": [
+            "Perfect, baking powder is in. Now add 1/4 teaspoon of salt to the mug.",
+            "Silent",
+            "You're doing great! Now, add 1/16 teaspoon of baking soda to the mug.",
+            "Good job! Next, pour in 3 tablespoons of milk and stir gently.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 93,
+        "gt": "Silent",
+        "models": [
+            "Great job adding the flour! Now, go ahead and mix the baking powder and flour together in the mug.",
+            "Nice. Now add a pinch of salt and stir the dry ingredients together until evenly mixed.",
+            "Silent.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 102,
+        "gt": "Flour is in. Now go ahead and add 1/8 teaspoon of salt.",
+        "models": [
+            "Nice job adding the flour! Now, add a small pinch of salt to the mug.",
+            "Now add a pinch of salt (about 1/16 teaspoon).",
+            "Excellent. The next step is to add 3 tablespoons of milk.",
+            "Good. Stir until the baking powder and flour are well combined.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 111,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Now add 3 tablespoons of milk to the mug.",
+            "That's it for the flour. The next ingredient is salt. You'll need 1/8 teaspoon.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 131,
+        "gt": "Silent",
+        "models": [
+            "Add 1/8 teaspoon of salt to the mug now.",
+            "Nice. Next, add 3 tablespoons of milk to the mug.",
+            "Wait, you haven't added the salt yet. You need to add 1/8 teaspoon of salt to the mug before we can move on.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 153,
+        "gt": "Wait, it looks like you jumped ahead and added a tablespoon of mozzarella cheese over the sauce. Let's get back on track—sprinkle some dried Italian herbs into the mug first.",
+        "models": [
+            "Oops, that's a mistake! You added cheese instead of salt. Let's fix that: first, scoop out the cheese from the mug, then add 1/8 teaspoon of salt.",
+            "Good. Next, add 3 tablespoons of milk.",
+            "Hold on, you've added cheese instead of salt. You'll need to remove the cheese and add 1/8 teaspoon of salt.",
+            "Salt is added. Next, crack in 1/2 a large egg.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 181,
+        "gt": "Hold on a second. It looks like you're about to add the salt, but please make sure you're using a clean, dry measuring spoon so the ingredients don't stick.",
+        "models": [
+            "Great, herbs are added. Now go ahead and add a tablespoon of mozzarella cheese to the mug.",
+            "Silent",
+            "Perfect. Now add 1/16 teaspoon of baking soda.",
+            "Now, add 2 tablespoons of pizza sauce.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 187,
+        "gt": "Now, pop it in the microwave for 1 minute and 20 seconds. You're looking for the dough to rise and the toppings to start bubbling.",
+        "models": [
+            "Perfect, salt is added. Now go ahead and stir all the dry ingredients together in the mug.",
+            "Silent",
+            "Silent.",
+            "Now, add 1/8 teaspoon of salt.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 194,
+        "gt": "Silent",
+        "models": [
+            "Perfect, you're mixing the dry ingredients together nicely. Keep stirring until they're evenly combined.",
+            "Careful—your mug looks like it’s overflowing. Stop the microwave, let it settle for 10 seconds, then continue in 10–15 second bursts until the top looks set and no longer wet.",
+            "Good catch, you need to mix those dry ingredients first. Once that's done, add 3 tablespoons of milk and 1 tablespoon of olive oil.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 204,
+        "gt": "That wasn't quite the next step—it looks like you just gave everything in the mug a good stir.",
+        "models": [
+            "Perfect job mixing those dry ingredients! Now, add 3 tablespoons of milk and 1 tablespoon of oil to the mug.",
+            "Silent",
+            "Great job mixing those dry ingredients together! Now, add 3 tablespoons of milk to the mug.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 234,
+        "gt": "I see you've added 3 tablespoons of milk to the mix.",
+        "models": [
+            "Silent",
+            "Next step: microwave it for 1 minute and 20 seconds.",
+            "Great! You've added the milk. Now, pour in 1 tablespoon of olive oil.",
+            "Next, add 1 tablespoon of pizza sauce to the mug. Stir well to combine.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 254,
+        "gt": "Silent",
+        "models": [
+            "Now, add 1 tablespoon of olive oil to the mug.",
+            "Next, add 1 tablespoon of olive oil and stir until you have a smooth batter.",
+            "Perfect. Now stir everything together.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 264,
+        "gt": "Okay, you've added 1 tablespoon of olive oil now.",
+        "models": [
+            "Perfect, you've added the olive oil. Now go ahead and stir all the ingredients in the mug together until the dough is smooth.",
+            "Nice. Next, add 1 tablespoon of olive oil (or any neutral oil) into the mug.",
+            "Great. Now it's time to mix everything together.",
+            "Stir well to combine.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 271,
+        "gt": "Silent",
+        "models": [
+            "Now, stir all the ingredients in the mug together until you get a smooth, uniform batter.",
+            "Now stir everything really well until you have a smooth batter with no dry flour pockets.",
+            "Go ahead and give it a good mix until everything comes together into a dough.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 286,
+        "gt": "You've thoroughly mixed the contents of the mug.",
+        "models": [
+            "Perfect stir! Now go ahead and add 2-3 tablespoons of pizza sauce on top of the mixture in the mug.",
+            "Now microwave it for 1 minute and 20 seconds.",
+            "Good job mixing the dough. Now, spoon a tablespoon of pizza sauce over the top.",
+            "Stir the mixture until it forms a dough ball.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 307,
+        "gt": "Just a heads-up: it looks like you're reaching for the sauce, but make sure you use marinara, not salsa.",
+        "models": [
+            "Great, you've grabbed the pizza sauce. Now add 2 tablespoons of it to the mug.",
+            "Now add 1 tablespoon of pizza sauce on top—don’t stir it in. Spread it lightly.",
+            "Now, spoon 1 tablespoon of marinara sauce onto the surface of the dough and spread it around.",
+            "Microwave for 1 minute and 20 seconds.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 320,
+        "gt": "Silent",
+        "models": [
+            "You've added a spoonful of sauce to the mug. Now, go ahead and sprinkle some dried Italian herbs on top.",
+            "Great—now add 2 tablespoons of marinara sauce on top (don’t stir it in).",
+            "You've got the sauce in. Now, sprinkle a tablespoon of mozzarella cheese on top.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 330,
+        "gt": "You've successfully spread the marinara sauce over the top of the batter.",
+        "models": [
+            "You've mixed the sauce into the dough. Next, sprinkle some dried Italian herbs on top.",
+            "Nice—now add 1 tablespoon of marinara sauce on top and spread it gently.",
+            "It looks like you used salsa instead of marinara. Also, the sauce should be spread on top of the dough, not mixed in. You might want to start over and use 1 tablespoon of marinara sauce.",
+            "Next, add 1 tablespoon of marinara sauce to the mug.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 350,
+        "gt": "I see you measured and added 1/16 teaspoon of baking soda.",
+        "models": [
+            "Perfect! You've added the Italian herbs. Now go ahead and sprinkle some shredded mozzarella cheese on top.",
+            "Now sprinkle a handful of shredded mozzarella on top.",
+            "You grabbed the baking soda, but you actually need baking powder for this recipe. Let's swap that out.",
+            "Next, sprinkle some mozzarella cheese evenly over the sauce.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 356,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 368,
+        "gt": "You've sprinkled the dried Italian herbs into the mug.",
+        "models": [
+            "Perfect! You've sprinkled dried Italian herbs over the sauce. Now go ahead and add 1 tablespoon of shredded mozzarella cheese on top.",
+            "Next, sprinkle 2 tablespoons of shredded mozzarella on top.",
+            "Great, you've added the Italian herbs. The next step is to sprinkle a tablespoon of mozzarella cheese on top.",
+            "Next, add 1 tablespoon of mozzarella cheese evenly over the sauce.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 382,
+        "gt": "Silent",
+        "models": [
+            "Perfect! You've placed the mug in the microwave and started it. Now just wait for it to finish cooking.",
+            "You've added the mozzarella cheese on top. Now add your pepperoni slices (about 4–6) on top of the cheese.",
+            "You've put the mug in the microwave for 1 minute and 20 seconds. Now we just wait.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 401,
+        "gt": "Silent",
+        "models": [
+            "Perfect! You've put the mug in the microwave and started it. Now just wait for it to finish cooking.",
+            "Now add 2 tablespoons of shredded mozzarella on top.",
+            "Great, you've set the microwave for 1 minute and 20 seconds. Let's wait for it to finish.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 426,
+        "gt": "Silent",
+        "models": [
+            "Perfect, the mug is in the microwave cooking. And you're doing a great job cleaning up the measuring spoons while you wait!",
+            "You added pepperoni slices. Nice. Now microwave it for 1 minute and 20 seconds.",
+            "Silent.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 433,
+        "gt": "Silent",
+        "models": [
+            "Great, you’ve started the microwave cooking cycle. Let it run for the set 1 minute 20 seconds, then we’ll take out your mug pizza.",
+            "Now add your toppings—sprinkle the mozzarella cheese on top, then add pepperoni if you want.",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 442,
+        "gt": "It looks like you're setting the timer. Be sure to set it for exactly 1 minute and 20 seconds to get the timing right.",
+        "models": [
+            "Now set the microwave timer for 1 minute and 20 seconds, then start it.",
+            "You've added a generous layer of mozzarella and pepperoni on top. Now microwave it for 1 minute to 1 minute 15 seconds, and stop when the cheese is melted and bubbling.",
+            "You can now carefully take the mug pizza out of the microwave and enjoy!",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 445,
+        "gt": "And that's it! You've finished all the steps. Enjoy your mug pizza!",
+        "models": [
+            "Great job! Your microwave mug pizza is done. Let it cool for a minute before diving in—it's hot!",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    }
+];
+
+const qualitativeExample2ErrorTimestamps = new Set([
+    153, // Jumped ahead and added cheese before the herb step.
+    181, // Salt step needs correction for tool preparation.
+    307, // Sauce step may use the wrong ingredient.
+    442  // Microwave timer needs correction.
+]);
+
+const qualitativeExample2VideoPath = 'imgs/captioncook4d.mp4';
+const qualitativeExample2Query = "I'm going to make a microwave mug pizza. Can you walk me through the steps and let me know if I make any mistakes along the way?";
+
+const qualitativeExample3Events = [
     {
         "time": 0,
         "gt": "Silent",
@@ -1650,54 +2464,480 @@ const qualitativeEvents = [
     }
 ];
 
-const qualitativeVideoPath = 'imgs/demo_fitness.mp4';
-const qualitativeQuery = "You're my training partner. Give me feedback on my movements and correct me when necessary.";
+const qualitativeExample3ErrorTimestamps = new Set([
+    15, // "You're only moving your arms?"
+    18, // "Move your arms and legs together!"
+    22, // "Don't stop with the jumps!"
+    25, // "I am still waiting for you to start jumping!"
+    36, // "Are you sure that's the right exercise?"
+    61, // "Don't stop after just one rep!"
+    69  // "Still waiting for you to start!"
+]);
 
-function makeExampleVariant(exampleId) {
-    return qualitativeEvents.map((event) => {
-        const action = event.gt === 'Silent' ? 'Silent' : event.gt;
-        if (exampleId === 2) {
-            return {
-                ...event,
-                models: [
-                    event.models[1],
-                    action,
-                    event.gt === 'Silent' ? 'Silent' : `At ${event.time}s: ${event.gt}`,
-                    event.models[3],
-                    event.gt === 'Silent' ? 'Silent' : 'Continue the workout and keep good form.'
-                ]
-            };
-        }
-        if (exampleId === 3) {
-            return {
-                ...event,
-                models: [
-                    event.models[2],
-                    event.gt === 'Silent' ? 'Silent' : 'Nice progress. Keep your movement controlled.',
-                    event.models[4],
-                    action,
-                    event.gt === 'Silent' ? 'Silent' : 'Watch your posture and timing.'
-                ]
-            };
-        }
-        return {
-            ...event,
-            models: [
-                event.models[3],
-                event.models[4],
-                event.gt === 'Silent' ? 'Silent' : 'Good effort. Stay steady.',
-                event.gt === 'Silent' ? 'Silent' : `Coach cue: ${event.gt}`,
-                action
-            ]
-        };
-    });
-}
+const qualitativeExample3VideoPath = 'imgs/demo_fitness.mp4';
+const qualitativeExample3Query = "You're my training partner. Give me feedback on my movements and correct me when necessary.";
+
+const qualitativeExample4Events = [
+    {
+        "time": 0,
+        "gt": "Silent",
+        "models": [
+            "Go ahead and start your first exercise—I’ll monitor your form closely and give you real-time feedback!",
+            "Stand so your whole body is visible (head to feet) and start your first set; tell me the exercise and your target reps.",
+            "Got it! Start your first exercise whenever you're ready, and I'll watch your form.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 1,
+        "gt": "Silent",
+        "models": [
+            "Got it! Start your first exercise, and I’ll watch closely to give you real-time feedback.",
+            "Tell me which exercise you’re doing first (e.g., squat, bench, deadlift) and set the camera so I can see your whole body plus the weight from the side.",
+            "Silent.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 2,
+        "gt": "Silent",
+        "models": [
+            "I’m ready! Go ahead and start your first exercise, and I’ll give you real-time feedback on your form.",
+            "Position your camera so I can see your whole body (head to feet) from the side, then start your first set and tell me the exercise name and your target reps.",
+            "Silent.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 3,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Tell me which exercise you’re doing first (e.g., squat, deadlift, bench, overhead press), your goal (strength/hypertrophy/technique), and start the set in view of the camera (full body + bar/weights visible).",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 4,
+        "gt": "Silent",
+        "models": [
+            "Stand with your feet shoulder-width apart to set a stable base.",
+            "What exercise are you doing right now, and what set/rep are you on? Also, position the camera so I can see your whole body (feet to head) from the side if possible.",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 10,
+        "gt": "First up are good morning beginner!",
+        "models": [
+            "Go ahead and start your first exercise rep—keep your core tight as you move.",
+            "Tell me what exercise you’re doing first, then start the set with your camera showing your full body (side view if possible) and the weight/equipment in frame.",
+            "Sounds great! I'm ready when you are. What exercise are we starting with?",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 13,
+        "gt": "Don't arch your back! Keep it straight.",
+        "models": [
+            "Great hinge movement! Now slowly return to standing position.",
+            "Silent",
+            "Nice start, now lift your torso back up!",
+            "Keep your back straight and knees slightly bent.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 16,
+        "gt": "Come on! Keeping your back straight!",
+        "models": [
+            "Better! Keep that neutral spine as you hinge forward.",
+            "Silent",
+            "Better! That's the correct form. Keep going!",
+            "Great form! Next, lower slowly.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 19,
+        "gt": "Ok! Looking better! Keep it up!",
+        "models": [
+            "You got it! Keep pushing!",
+            "Silent",
+            "No, keep your back straight.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 23,
+        "gt": "Looking good!",
+        "models": [
+            "Perfect form! Keep going!",
+            "Silent",
+            "Silent.",
+            "Great form! Next, lower slowly.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 26,
+        "gt": "No! You are arching your back again!",
+        "models": [
+            "Perfect form!",
+            "Next: hinge back at the hips first—push your hips back, keep a neutral spine, and stop when you feel your hamstrings load.",
+            "Remember to keep your back straight! Don't arch it!",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 33,
+        "gt": "Moving on to air jump rope!",
+        "models": [
+            "Great job! You finished the set!",
+            "Silent",
+            "Next, go do standing single leg calf raise.",
+            "Back straight!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 35,
+        "gt": "Yeah, this is hopping!",
+        "models": [
+            "",
+            "Keep your elbows close to your sides and turn the “rope” with your wrists—small jumps, soft landings.",
+            "Keep up the good work!",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 38,
+        "gt": "Make sure you are really jumping and lifting your heels off the floor!",
+        "models": [
+            "No. You need to keep those arms turning!",
+            "Next: keep elbows tucked and wrists circling like you're turning a rope. Small, quick jumps.",
+            "Keep circling your hands as you jump.",
+            "Jump higher! Keep the knees bent.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 42,
+        "gt": "Looking good! Keep going!",
+        "models": [
+            "Keep going!",
+            "Silent",
+            "Jump higher! That's it!",
+            "Great height! Keep it consistent!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 51,
+        "gt": "Good job! Keep it up for the next one!",
+        "models": [
+            "Great work! Next up are push-ups!",
+            "Silent",
+            "Silent.",
+            "Great form! Continue!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 55,
+        "gt": "Moving on to standing kicks!",
+        "models": [
+            "Great job! Moving on to squats!",
+            "Silent",
+            "Next up is jumping jacks!",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 59,
+        "gt": "That's it",
+        "models": [
+            "Great job! Keep going!",
+            "Good! Keep your balance and engage your core!",
+            "Good! Try to keep your leg straight.",
+            "Silent",
+            "Good job! Keep going for the next exercise!"
+        ]
+    },
+    {
+        "time": 63,
+        "gt": "Make sure to keep the les straight !",
+        "models": [
+            "Keep going!",
+            "Keep your core tight and don't lean back—kick from the hip, then bring the foot back under you.",
+            "Silent",
+            "Great kick! Keep alternating legs!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 66,
+        "gt": "Whoa, now that's a high kick! But please keep your legs straight.",
+        "models": [
+            "Looking good! Keep it up!",
+            "Silent",
+            "Please remember to straighten your leg when kicking.",
+            "Great kick!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 70,
+        "gt": "That were nice kicks, but as said before, remember to keep your leg straight.",
+        "models": [
+            "Keep those legs straight!",
+            "Ok done! Great!",
+            "Watch your knees! Keep them straight!",
+            "Great height! Keep legs straight!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 77,
+        "gt": "Moving on to boxing squat punches!",
+        "models": [
+            "Great job! Moving on to next exercise!",
+            "Moving on to mountain climbers!",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 81,
+        "gt": "Yes, let's make it happen.",
+        "models": [
+            "Come on!",
+            "Ok! Keep your legs shoulder width. Don't go too low. Push through your heels.",
+            "Sink a little bit lower!",
+            "Squat down, then punch!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 86,
+        "gt": "Try to speed up a little bit!",
+        "models": [
+            "Looking good! Keep it up!",
+            "Don't go too deep into squats. Keep your knees behind your toes.",
+            "Looking good! Keep it up!",
+            "Squat down first!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 88,
+        "gt": "5 reps! Keep it coming.",
+        "models": [
+            "",
+            "Ok, nice! Let's make sure to keep you knees behind your toes.",
+            "Silent.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 92,
+        "gt": "Love your speed!",
+        "models": [
+            "Looking good! Keep going!",
+            "Nice! Keep going!",
+            "7 reps! Try to punch faster!",
+            "Great form! Next rep!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 94,
+        "gt": "10",
+        "models": [
+            "Keep it up!",
+            "Now that was great.",
+            "Great! Keep going!",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 100,
+        "gt": "Moving on to armcrosschest left!",
+        "models": [
+            "Great job!",
+            "Silent",
+            "Silent",
+            "Great momentum!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 104,
+        "gt": "Don't bend! Keep your arms straight.",
+        "models": [
+            "Keep it up!",
+            "Keep the movements controlled and steady!",
+            "Nice job! Keep holding that stretch!",
+            "Cross your arms over your chest!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 107,
+        "gt": "Face towards the camera and straighten your arm across your body.",
+        "models": [
+            "Looking good!",
+            "It's ok! Just try to not bend your arms. Keep them straight.",
+            "Silent.",
+            "Great form! Cross arms again.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 112,
+        "gt": "Yes! That's better. Now try to stretch that arm out.",
+        "models": [
+            "Good job! Moving on to armcrosschest right!",
+            "Ok. You did it right. Remember to keep your arms straight!",
+            "Straighten your arm and face your body forward.",
+            "Great form! Keep it up.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 117,
+        "gt": "Yes! That's it. Feel that pull in your shoulder!",
+        "models": [
+            "Perfect! Now switch to the other side.",
+            "Great! Hold it.",
+            "You're still bending your arm a bit. Focus on keeping the arm straight.",
+            "Great! Next rep!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 121,
+        "gt": "Moving on to armcrosschest right!",
+        "models": [
+            "Great job! Now let's switch to armcrosschest right!",
+            "Moving on to armcrosschest right!",
+            "Keep stretching! Hold it!",
+            "Great form! Next rep!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 126,
+        "gt": "Nice stretch. You should really feel it in the shoulder.",
+        "models": [
+            "Good job! Keep that arm straight and feel the stretch!",
+            "Same thing: keep that arm straight as you pull it across.",
+            "Silent",
+            "Straighten your arm! Keep it straight.",
+            "Silent"
+        ]
+    },
+    {
+        "time": 131,
+        "gt": "Great work! You got this!",
+        "models": [
+            "Moving on to back stretch!",
+            "Ok, now hold that position.",
+            "Perfect form! Just keep holding it for a few more seconds.",
+            "Now let's do some push-ups! Start in a plank position!",
+            "Silent"
+        ]
+    },
+    {
+        "time": 135,
+        "gt": "Looking great. Keep it going!",
+        "models": [
+            "Moving on to tricep dips!",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 142,
+        "gt": "That was awesome!",
+        "models": [
+            "Perfect! That's a great stretch!",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 145,
+        "gt": "That's the end of the session.",
+        "models": [
+            "Moving on to tricep dips on chair!",
+            "Moving on to Overhead tricep stretch left!",
+            "Silent",
+            "Silent.",
+            "Silent"
+        ]
+    }
+];
+
+const qualitativeExample4ErrorTimestamps = new Set([
+    13,  // Back arching correction.
+    26,  // Back is arching again.
+    66,  // High kick but legs should stay straight.
+    70,  // Reminder to keep the leg straight.
+    104  // Arm should stay straight.
+]);
+
+const qualitativeExample4VideoPath = 'imgs/demo4.mp4';
+const qualitativeExample4Query = "I need you as my gym partner—watch my exercises and tell me what to improve or fix.";
 
 const qualitativeExamples = [
-    { video: qualitativeVideoPath, query: qualitativeQuery, events: qualitativeEvents },
-    { video: qualitativeVideoPath, query: qualitativeQuery, events: makeExampleVariant(2) },
-    { video: qualitativeVideoPath, query: qualitativeQuery, events: makeExampleVariant(3) },
-    { video: qualitativeVideoPath, query: qualitativeQuery, events: makeExampleVariant(4) }
+    {
+        video: qualitativeExample1VideoPath,
+        query: qualitativeExample1Query,
+        events: qualitativeExample1Events,
+        duration: 281,
+        errorTimestamps: qualitativeExample1ErrorTimestamps
+    },
+    {
+        video: qualitativeExample2VideoPath,
+        query: qualitativeExample2Query,
+        events: qualitativeExample2Events,
+        duration: 445,
+        errorTimestamps: qualitativeExample2ErrorTimestamps
+    },
+    {
+        video: qualitativeExample3VideoPath,
+        query: qualitativeExample3Query,
+        events: qualitativeExample3Events,
+        duration: 150,
+        errorTimestamps: qualitativeExample3ErrorTimestamps
+    },
+    {
+        video: qualitativeExample4VideoPath,
+        query: qualitativeExample4Query,
+        events: qualitativeExample4Events,
+        duration: 145,
+        errorTimestamps: qualitativeExample4ErrorTimestamps
+    }
 ];
 
 function initQualitativeTimeline() {
@@ -1710,8 +2950,8 @@ function initQualitativeTimeline() {
         return;
     }
 
-    let timelineDuration = 150;
     let activeExample = qualitativeExamples[0];
+    let timelineDuration = activeExample.duration || 150;
     let activeEvents = activeExample.events;
     const responseNodes = {
         query: document.querySelector('[data-response="query"]'),
@@ -1731,7 +2971,8 @@ function initQualitativeTimeline() {
             }
             const marker = document.createElement('button');
             marker.type = 'button';
-            marker.className = 'timeline-event gt';
+            const isError = activeExample.errorTimestamps.has(event.time);
+            marker.className = `timeline-event ${isError ? 'error' : 'gt'}`;
             marker.style.left = `${Math.min((event.time / timelineDuration) * 100, 98)}%`;
             marker.dataset.label = `${event.time}s`;
             marker.dataset.tooltip = `${event.time}s`;
@@ -1777,14 +3018,18 @@ function initQualitativeTimeline() {
     }
 
     function updateTimelineDuration() {
-        if (Number.isFinite(video.duration) && video.duration > 0) {
-            timelineDuration = video.duration;
-            if (endTimeLabel) {
-                endTimeLabel.textContent = `${Math.round(video.duration)}s`;
-            }
-            renderMarkers();
-            updateQualitativeTimeline(video.currentTime || 0);
+        const duration = Number.isFinite(video.duration) && video.duration > 0
+            ? video.duration
+            : activeExample.duration;
+        if (!duration) {
+            return;
         }
+        timelineDuration = duration;
+        if (endTimeLabel) {
+            endTimeLabel.textContent = `${Math.round(duration)}s`;
+        }
+        renderMarkers();
+        updateQualitativeTimeline(video.currentTime || 0);
     }
 
     function switchExample(index) {
@@ -1794,8 +3039,12 @@ function initQualitativeTimeline() {
 
         activeExample = qualitativeExamples[index];
         activeEvents = activeExample.events;
+        timelineDuration = activeExample.duration || 150;
         video.pause();
-        if (video.getAttribute('src') !== activeExample.video) {
+        if (!activeExample.video) {
+            video.removeAttribute('src');
+            video.load();
+        } else if (video.getAttribute('src') !== activeExample.video) {
             video.setAttribute('src', activeExample.video);
             video.load();
         }
