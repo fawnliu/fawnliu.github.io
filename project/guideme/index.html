@@ -248,6 +248,7 @@
             background: var(--bg-alt);
             color: var(--text);
             font-weight: 700;
+            white-space: normal;
         }
 
         .result-table td:first-child,
@@ -293,6 +294,318 @@
             border-radius: 12px;
             border: 1px solid var(--border);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .qualitative-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .qualitative-video {
+            display: block;
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto 28px;
+            border-radius: 14px;
+            background: #0f172a;
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.16);
+        }
+
+        .example-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 34px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .example-tab {
+            border: 0;
+            border-radius: 999px;
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--text);
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .example-tab:hover {
+            background: #f1f5f9;
+        }
+
+        .example-tab.active {
+            background: #e5e7eb;
+            color: var(--text);
+        }
+
+        .timeline-panel {
+            margin-top: 10px;
+        }
+
+        .timeline-axis {
+            display: grid;
+            grid-template-columns: 140px repeat(6, 1fr);
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+        }
+
+        .timeline-axis span:not(:first-child) {
+            text-align: center;
+        }
+
+        .timeline-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 18px;
+            align-items: center;
+            margin: 16px 0;
+        }
+
+        .timeline-label {
+            color: var(--text);
+            font-weight: 700;
+            font-size: 0.92rem;
+            text-align: right;
+        }
+
+        .timeline-track {
+            position: relative;
+            height: 58px;
+            border-radius: 12px;
+            background:
+                repeating-linear-gradient(to right, transparent 0, transparent calc(20% - 1px), rgba(148, 163, 184, 0.22) calc(20% - 1px), rgba(148, 163, 184, 0.22) 20%),
+                #f8fafc;
+        }
+
+        .timeline-track::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 4px;
+            transform: translateY(-50%);
+            border-radius: 999px;
+            background: #e2e8f0;
+        }
+
+        .timeline-event {
+            position: absolute;
+            top: 50%;
+            width: 13px;
+            height: 13px;
+            padding: 0;
+            border: 0;
+            border-radius: 999px;
+            transform: translate(-50%, -50%);
+            cursor: help;
+            z-index: 2;
+        }
+
+        .timeline-event::after {
+            content: none;
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+            white-space: nowrap;
+        }
+
+        .timeline-event:hover::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            width: auto;
+            transform: translateX(-50%);
+            padding: 3px 7px;
+            border-radius: 6px;
+            background: #f1f5f9;
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            line-height: 1.35;
+            white-space: nowrap;
+            box-shadow: none;
+        }
+
+        .timeline-event.gt {
+            background: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
+        }
+
+        .timeline-event.pred {
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.14);
+        }
+
+        .timeline-event.silent {
+            background: #94a3b8;
+            box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.18);
+        }
+
+        .timeline-legend {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+            color: var(--text-secondary);
+            font-size: 0.86rem;
+        }
+
+        .legend-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 6px;
+            border-radius: 999px;
+            vertical-align: middle;
+        }
+
+        .legend-dot.gt {
+            background: var(--primary);
+        }
+
+        .legend-dot.pred {
+            background: var(--accent);
+        }
+
+        .legend-dot.silent {
+            background: #94a3b8;
+        }
+
+        .shared-axis {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 6px;
+        }
+
+        .shared-axis span {
+            text-align: left !important;
+        }
+
+        .shared-timeline {
+            height: 70px;
+            margin-top: 8px;
+        }
+
+        .timeline-endpoint {
+            position: absolute;
+            top: 46px;
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            z-index: 2;
+        }
+
+        .timeline-endpoint.start {
+            left: 0;
+        }
+
+        .timeline-endpoint.end {
+            right: 0;
+        }
+
+        .shared-timeline .timeline-event {
+            cursor: pointer;
+        }
+
+        .timeline-event.active {
+            width: 17px;
+            height: 17px;
+            background: var(--accent);
+            box-shadow: 0 0 0 6px rgba(124, 58, 237, 0.16);
+        }
+
+        .timeline-playhead {
+            position: absolute;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            left: 0;
+            transform: translateX(-1px);
+            background: var(--accent);
+            z-index: 1;
+        }
+
+        .response-grid {
+            display: grid;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .response-row {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 14px;
+            align-items: stretch;
+        }
+
+        .response-name {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-weight: 700;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .response-text {
+            min-height: 46px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg-alt);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .response-row.gt .response-text {
+            background: #eff6ff;
+            border-color: rgba(37, 99, 235, 0.24);
+            color: var(--text);
+        }
+
+        .response-row.user-query .response-text {
+            background: #f5f3ff;
+            border-color: rgba(124, 58, 237, 0.22);
+            color: var(--text);
+        }
+
+        .current-time-label {
+            margin-top: 14px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .example-notes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .example-note {
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg-alt);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .example-note strong {
+            display: block;
+            color: var(--text);
+            margin-bottom: 6px;
         }
 
         .metric-table thead tr:first-child th:nth-child(3),
@@ -390,8 +703,8 @@
     <div class="container">
         <h1>GuideMe: Benchmarking Multi-Domain Task Guidance and Intervention in Streaming Video</h1>
         <p class="authors">
-            <a href="https://fawnliu.github.io/">Fang Liu</a><sup>1</sup>, &nbsp;
-            <a href="https://jinpeng0528.github.io/">Jinpeng Chen</a><sup>2</sup>, &nbsp;
+            <a href="https://fawnliu.github.io/">Fang Liu</a><sup>1,*</sup>, &nbsp;
+            <a href="https://jinpeng0528.github.io/">Jinpeng Chen</a><sup>2,*</sup>, &nbsp;
             <a href="https://scholar.google.com/citations?user=2meBhbQAAAAJ&hl=en">Ke Xu</a><sup>1</sup>, &nbsp;
             <a href="https://scholar.google.com/citations?user=eHWiGU8AAAAJ&hl=en">Yuhao Liu</a><sup>1</sup>, &nbsp;
             <a href="https://scholar.google.com/citations?user=jI0LxMoAAAAJ&hl=en">Huankang Guan</a><sup>2</sup>, &nbsp;
@@ -410,7 +723,7 @@
             <sup>4</sup>City University of Hong Kong (Dongguan)
         </p>
         <p class="venue">ECCV 2026</p>
-        <p class="note"><sup>&dagger;</sup>Corresponding authors</p>
+        <p class="note"><sup>*</sup>Joint first authors &nbsp;&nbsp; <sup>&dagger;</sup>Corresponding authors</p>
         <div class="links">
             <span>
                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -589,31 +902,6 @@
     </div>
 </section>
 
-<section style="background: var(--bg-alt);">
-    <div class="container">
-        <h2>Task Formulation</h2>
-        <div class="content-grid">
-            <div class="info-card">
-                <h3>Online Streaming Assistance</h3>
-                <p>The assistant observes a continuous video stream causally and can only use visual evidence up to the current timestamp, together with the accumulated dialogue history.</p>
-            </div>
-            <div class="info-card">
-                <h3>Closed-Loop Interaction</h3>
-                <p>At each step, the assistant decides whether to remain silent or provide guidance. Its feedback can influence the user's subsequent actions within the same session.</p>
-            </div>
-            <div class="info-card">
-                <h3>Guidance Behaviors</h3>
-                <ul>
-                    <li>Next-step instruction</li>
-                    <li>Completion feedback</li>
-                    <li>Error detection</li>
-                    <li>Corrective guidance</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section>
     <div class="container">
         <h2>Evaluation Framework</h2>
@@ -631,7 +919,12 @@
                 <p>Assesses the content quality of open-ended guidance responses, focusing on semantic correctness and actionable feedback.</p>
             </div>
         </div>
+    </div>
+</section>
 
+<section style="background: var(--bg-alt);">
+    <div class="container">
+        <h2>Experimental Results</h2>
         <div class="table-wrapper">
             <table class="result-table metric-table">
                 <thead>
@@ -822,15 +1115,71 @@
             </table>
         </div>
         <p class="table-caption">Main evaluation results on GuideMe. sPrecision is the sum of matched semantic similarities divided by active non-silent predictions, measuring intervention relevance; sRecall is divided by non-silent ground-truth responses, measuring required-intervention coverage; sF1 is their harmonic mean.<br>CS: Correct Silent, NR: No Response, FA: False Alarm, PC: Partly Correct. Score is the average instance-level score: CS receives 100, FA and NR receive 0, and PC receives an LLM-as-a-Judge quality score scaled to 0-100.</p>
+        <div class="content-grid" style="margin-top: 28px;">
+            <div class="info-card">
+                <h3>Aggressive vs. Conservative Behaviors</h3>
+                <p>No baseline provides reliable streaming coaching. Aggressive models such as Gemini 3.1 Pro and Qwen3-VL-8B/30B-A3B respond frequently but trigger many false alarms, while conservative models such as Qwen3.5 speak much less often and miss many required interventions.</p>
+            </div>
+            <div class="info-card">
+                <h3>Knowing When to Speak Remains Hard</h3>
+                <p>Scaling and streaming-oriented pretraining do not solve the task. Larger models do not consistently improve temporal alignment, and streaming models also struggle, with some over-responding and others collapsing toward near-silence.</p>
+            </div>
+        </div>
     </div>
 </section>
 
 <section style="background: var(--bg-alt);">
     <div class="container">
-        <h2>Key Finding</h2>
-        <p class="highlight">
-            Current MLLMs can often provide step-by-step instructions, but they struggle with the harder stages of interactive coaching: detecting execution errors and providing timely corrective feedback. GuideMe exposes this gap and provides a benchmark for developing more reliable real-time procedural assistants.
-        </p>
+        <h2>Qualitative Results</h2>
+        <div class="qualitative-card">
+            <div class="example-tabs" aria-label="Qualitative examples">
+                <button class="example-tab active" type="button" data-example-index="0">Example 1</button>
+                <button class="example-tab" type="button" data-example-index="1">Example 2</button>
+                <button class="example-tab" type="button" data-example-index="2">Example 3</button>
+                <button class="example-tab" type="button" data-example-index="3">Example 4</button>
+            </div>
+            <div class="qualitative-content">
+                <video id="qualitative-video" class="qualitative-video" src="imgs/0a01d7d0-11d6-4af6-abd9-2025656d3c63.mp4" controls muted playsinline></video>
+                <div class="timeline-panel">
+                <div class="timeline-track shared-timeline" id="qualitative-timeline">
+                    <span class="timeline-playhead" id="timeline-playhead"></span>
+                    <span class="timeline-endpoint start">0s</span>
+                    <span class="timeline-endpoint end" id="timeline-end-time">150s</span>
+                </div>
+                <span id="current-response-time" style="display: none;">0s</span>
+                <div class="response-grid">
+                    <div class="response-row user-query">
+                        <div class="response-name">User Query</div>
+                        <div class="response-text" data-response="query">You're my training buddy. Comment on my workout performance and correct me whenever it's necessary.</div>
+                    </div>
+                    <div class="response-row gt">
+                        <div class="response-name">Ground Truth</div>
+                        <div class="response-text" data-response="gt">Silent</div>
+                    </div>
+                    <div class="response-row">
+                        <div class="response-name">Model 1</div>
+                        <div class="response-text" data-response="model1">Tell me what exercise you are doing right now, then start your first set.</div>
+                    </div>
+                    <div class="response-row">
+                        <div class="response-name">Model 2</div>
+                        <div class="response-text" data-response="model2">Silent</div>
+                    </div>
+                    <div class="response-row">
+                        <div class="response-name">Model 3</div>
+                        <div class="response-text" data-response="model3">What exercise are you doing right now?</div>
+                    </div>
+                    <div class="response-row">
+                        <div class="response-name">Model 4</div>
+                        <div class="response-text" data-response="model4">Silent</div>
+                    </div>
+                    <div class="response-row">
+                        <div class="response-name">Model 5</div>
+                        <div class="response-text" data-response="model5">Keep the camera framed so I can see your full body.</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -857,6 +1206,224 @@
 </footer>
 
 <script>
+const qualitativeEvents = [
+    { time: 0, gt: "Silent", models: ["Tell me what exercise you’re doing right now (and your goal—strength, hypertrophy, fat loss, or endurance), then start your first set and keep the camera framed so I can see your full body and the weight.", "Silent", "Silent", "Silent", "Silent"] },
+    { time: 1, gt: "Silent", models: ["What exercise are you doing right now, and what’s your goal (strength, hypertrophy, endurance, form rehab)? Also tell me your equipment (bodyweight/dumbbells/barbell).", "Silent", "Silent", "Silent", "Silent"] },
+    { time: 2, gt: "Silent", models: ["Tell me what exercise you’re doing first (and your goal for today—form, strength, or endurance), then start the set so I can cue you rep by rep.", "Silent", "Silent", "Silent", "Silent"] },
+    { time: 3, gt: "Silent", models: ["Tell me what exercise you’re doing right now (and your goal: strength, hypertrophy, endurance, or fat loss), then start your first set and keep your whole body in view.", "Silent", "Silent", "Silent", "Silent"] },
+    { time: 4, gt: "Silent", models: ["What exercise are you doing right now, and what’s your goal for this set (e.g., 10 reps, form focus, speed)?", "Silent", "Silent", "Silent", "Silent"] },
+    { time: 5, gt: "Silent", models: ["Tell me what exercise you’re doing right now (and your setup/goal—strength, hypertrophy, or endurance). Then start your first set and keep your whole body in view so I can cue form in real time.", "Silent", "Silent", "Silent", "Silent"] },
+    { time: 6, gt: "Silent", models: ["What exercise are you doing right now, and what’s your goal for today (strength, hypertrophy, endurance, form)?", "Silent", "Silent", "Silent", "Silent"] },
+    { time: 12, gt: "First up are jumping jacks!", models: ["What exercise are you doing right now (and your target reps/sets)? Position the camera so I can see your whole body and the working joint(s) side-on.", "First up are jumping jacks!", "Silent", "Let us begin with jumping jacks.", "Start with jumping jacks."] },
+    { time: 16, gt: "Let's get started!", models: ["Silent", "Let's get started!", "Start now.", "Silent", "Begin the workout."] },
+    { time: 20, gt: "Come on! Jumping Jack, Jumping Jack, that's what I gotta do now!", models: ["Silent", "Keep going with jumping jacks.", "Silent", "Jumping jacks now.", "Nice start."] },
+    { time: 23, gt: "There is still time! Come on!", models: ["Silent", "There is still time! Come on!", "Keep going.", "Silent", "Push through."] },
+    { time: 25, gt: "Yes! That's it!", models: ["Silent", "Yes! That's it!", "Good job.", "Silent", "Nice rhythm."] },
+    { time: 27, gt: "Wow! I love the range of motion you have here!", models: ["Silent", "Great range of motion.", "Silent", "Nice form.", "Keep it up."] },
+    { time: 30, gt: "That is awesome! Keep it up!", models: ["Silent", "That is awesome! Keep it up!", "Keep it up.", "Silent", "Great effort."] },
+    { time: 36, gt: "Moving on to high knees!", models: ["Yes! You're doing it! Keep going. Great stamina.", "Moving on to high knees!", "Next exercise: high knees.", "Silent", "Great job. Transition to high knees now."] },
+    { time: 38, gt: "That's it!", models: ["Nice! Keep your chest tall and drive your knees up to hip height.", "That's it!", "Keep your chest tall.", "Silent", "Good pace."] },
+    { time: 39, gt: "Try to keep your hands straight in front or at your sides!", models: ["There is still time! Come on!", "Keep your hands straight in front or at your sides.", "Silent", "Mind your arms.", "Keep moving."] },
+    { time: 43, gt: "Try to get those knees higher! Mind your hands!", models: ["Silent", "Bring your knees higher toward hip level.", "Keep moving and lift your knees a bit more.", "Your pace is good, but raise the knees higher.", "Silent"] },
+    { time: 50, gt: "Your knees are still too low!", models: ["Nice! Keep pushing!Great job! Next up are squats!", "Knees are still low; drive them up toward your hands.", "Silent", "Try to lift each knee higher before switching.", "Keep your torso upright and knees high."] },
+    { time: 55, gt: "Aim higher next time and try to keep your hands straight in front or at your sides!", models: ["Try to get your knees as high as your hip! Keep trying!Push it! push it! push it! You're doing awesome! 🎉", "Aim higher next time.", "Keep your hands straight.", "Silent", "Good effort."] },
+    { time: 58, gt: "Moving on to squats!", models: ["Silent", "Move on to squats.", "Transition to squats now.", "Great work; next is squats.", "Prepare for squats and keep your feet shoulder-width apart."] },
+    { time: 61, gt: "Yes! That's it!", models: ["Try to keep your knees behind your toes!", "Yes! That's it!", "Good squat start.", "Silent", "Keep your form."] },
+    { time: 64, gt: "Love your form! Nice deep squats!", models: ["Try to go deeper! Bend those knees, sit down! Keep your back straight!", "Good depth. Keep your chest lifted.", "Try to keep your knees tracking over your toes.", "Nice squat depth; keep the rhythm.", "Silent"] },
+    { time: 67, gt: "5 reps! Keep it up!", models: ["Try to keep your back straight! Don't bend forward too much!", "5 reps! Keep it up!", "Keep your back straight.", "Silent", "Nice reps."] },
+    { time: 70, gt: "Keep going!", models: ["Silent", "Keep going!", "Keep the pace.", "Silent", "Stay steady."] },
+    { time: 72, gt: "Keep up the pace! Don't slow down!", models: ["Try to keep your arms straight in front of you while squatting!", "Keep up the pace!", "Do not slow down.", "Silent", "Keep your rhythm."] },
+    { time: 77, gt: "10", models: ["Try to keep your back straight! Great job on the depth!", "10", "Ten reps.", "Silent", "Great job."] },
+    { time: 81, gt: "Moving on to pushups!", models: ["Keep up! Don't lose your momentum!", "Next up are pushups.", "Move into pushups now.", "Silent", "Transition to pushups and keep your body straight."] },
+    { time: 85, gt: "Yes! That's it!", models: ["Keep your back straight! You're arching too much!", "Good start. Keep a straight line from shoulders to heels.", "Lower your chest with control.", "Try not to let your hips sag.", "Silent"] },
+    { time: 87, gt: "2", models: ["Try to keep your body in a straight line and don't stick your butt up.", "2", "Two.", "Silent", "Keep your body straight."] },
+    { time: 89, gt: "3", models: ["3", "3", "Three.", "Silent", "Good."] },
+    { time: 91, gt: "4", models: ["4", "4", "Four.", "Silent", "Keep going."] },
+    { time: 93, gt: "5", models: ["5 reps! You can do it!", "5", "Five.", "Silent", "Nice work."] },
+    { time: 95, gt: "6", models: ["6", "6", "Six.", "Silent", "Keep pushing."] },
+    { time: 98, gt: "7", models: ["Try to keep a straighter line from shoulders to heels—don’t let your hips sag.", "7", "Seven.", "Silent", "Keep your hips aligned."] },
+    { time: 107, gt: "Moving on to quad stretch left!", models: ["89Try to keep your back straight!", "Switch to left quad stretch.", "Hold your left foot and keep your balance.", "Silent", "Now stretch your left quad."] },
+    { time: 109, gt: "Great, now that you're set, let's stretch the front of that leg out.", models: ["Silent", "Stretch the front of that leg.", "Hold the left quad stretch.", "Silent", "Keep your balance."] },
+    { time: 112, gt: "Yes! Stretch out that quad.", models: ["Keep holding it! Almost done!", "Stretch out that quad.", "Keep holding.", "Silent", "Good stretch."] },
+    { time: 117, gt: "Looks good. Now focus on keeping your balance!", models: ["Keep your body straight. Don't lean over.", "Focus on keeping your balance.", "Keep your body straight.", "Silent", "Do not lean over."] },
+    { time: 121, gt: "Love it! Keep it going!", models: ["Nice! Keep holding and breathe.", "Love it! Keep it going!", "Keep holding.", "Silent", "Breathe steadily."] },
+    { time: 126, gt: "Amazing work!", models: ["Moving on to quad stretch right!", "Amazing work!", "Great job.", "Silent", "Nice work."] },
+    { time: 128, gt: "Moving on to quad stretch right!", models: ["Now switch legs! Quad stretch right.", "Switch to the right quad stretch.", "Good. Change to the other side.", "Move to quad stretch right.", "Silent"] },
+    { time: 131, gt: "Yes! Stretch out that quad.", models: ["Nice! Grab that ankle and keep your knees close together.", "Stretch out that quad.", "Keep your knees close together.", "Silent", "Good stretch."] },
+    { time: 134, gt: "Keep your core tight to maintain your balance!", models: ["Great, now focus on your balance and keep your knee pointing down.", "Keep your core tight.", "Maintain your balance.", "Silent", "Keep the knee pointing down."] },
+    { time: 136, gt: "Yes! That it! Do you feel the burn?", models: ["You're doing great! Keep stretching.", "Do you feel the burn?", "Keep stretching.", "Silent", "Great job."] },
+    { time: 139, gt: "Looking great! Keep going!", models: ["Try to pull that foot a bit closer to your butt.", "Looking great! Keep going!", "Pull your foot closer.", "Silent", "Keep balance."] },
+    { time: 143, gt: "Good job!", models: ["Amazing work! Keep going!", "Good job!", "Nice work.", "Silent", "Almost done."] },
+    { time: 150, gt: "That's the end of the session.", models: ["Silent", "Great job, session complete.", "That is the end of the workout.", "Nice work today.", "Workout finished. Cool down and breathe."] }
+];
+
+const qualitativeVideoPath = 'imgs/0a01d7d0-11d6-4af6-abd9-2025656d3c63.mp4';
+const qualitativeQuery = "You're my training buddy. Comment on my workout performance and correct me whenever it's necessary.";
+
+function makeExampleVariant(exampleId) {
+    return qualitativeEvents.map((event) => {
+        const action = event.gt === 'Silent' ? 'Silent' : event.gt;
+        if (exampleId === 2) {
+            return {
+                ...event,
+                models: [
+                    event.models[1],
+                    action,
+                    event.gt === 'Silent' ? 'Silent' : `At ${event.time}s: ${event.gt}`,
+                    event.models[3],
+                    event.gt === 'Silent' ? 'Silent' : 'Continue the workout and keep good form.'
+                ]
+            };
+        }
+        if (exampleId === 3) {
+            return {
+                ...event,
+                models: [
+                    event.models[2],
+                    event.gt === 'Silent' ? 'Silent' : 'Nice progress. Keep your movement controlled.',
+                    event.models[4],
+                    action,
+                    event.gt === 'Silent' ? 'Silent' : 'Watch your posture and timing.'
+                ]
+            };
+        }
+        return {
+            ...event,
+            models: [
+                event.models[3],
+                event.models[4],
+                event.gt === 'Silent' ? 'Silent' : 'Good effort. Stay steady.',
+                event.gt === 'Silent' ? 'Silent' : `Coach cue: ${event.gt}`,
+                action
+            ]
+        };
+    });
+}
+
+const qualitativeExamples = [
+    { video: qualitativeVideoPath, query: qualitativeQuery, events: qualitativeEvents },
+    { video: qualitativeVideoPath, query: qualitativeQuery, events: makeExampleVariant(2) },
+    { video: qualitativeVideoPath, query: qualitativeQuery, events: makeExampleVariant(3) },
+    { video: qualitativeVideoPath, query: qualitativeQuery, events: makeExampleVariant(4) }
+];
+
+function initQualitativeTimeline() {
+    const video = document.getElementById('qualitative-video');
+    const timeline = document.getElementById('qualitative-timeline');
+    const playhead = document.getElementById('timeline-playhead');
+    const timeLabel = document.getElementById('current-response-time');
+    const endTimeLabel = document.getElementById('timeline-end-time');
+    if (!video || !timeline || !playhead || !timeLabel) {
+        return;
+    }
+
+    let timelineDuration = 150;
+    let activeExample = qualitativeExamples[0];
+    let activeEvents = activeExample.events;
+    const responseNodes = {
+        query: document.querySelector('[data-response="query"]'),
+        gt: document.querySelector('[data-response="gt"]'),
+        model1: document.querySelector('[data-response="model1"]'),
+        model2: document.querySelector('[data-response="model2"]'),
+        model3: document.querySelector('[data-response="model3"]'),
+        model4: document.querySelector('[data-response="model4"]'),
+        model5: document.querySelector('[data-response="model5"]')
+    };
+
+    function renderMarkers() {
+        timeline.querySelectorAll('.timeline-event').forEach((marker) => marker.remove());
+        activeEvents.forEach((event, index) => {
+            if (event.gt === 'Silent') {
+                return;
+            }
+            const marker = document.createElement('button');
+            marker.type = 'button';
+            marker.className = 'timeline-event gt';
+            marker.style.left = `${Math.min((event.time / timelineDuration) * 100, 98)}%`;
+            marker.dataset.label = `${event.time}s`;
+            marker.dataset.tooltip = `${event.time}s`;
+            marker.dataset.index = String(index);
+            marker.setAttribute('aria-label', `${event.time} seconds`);
+            marker.addEventListener('click', () => {
+                video.currentTime = event.time;
+                updateQualitativeTimeline(event.time);
+            });
+            timeline.appendChild(marker);
+        });
+    }
+
+    function getActiveEvent(time) {
+        let active = activeEvents[0];
+        for (const event of activeEvents) {
+            if (event.time <= time + 0.25) {
+                active = event;
+            } else {
+                break;
+            }
+        }
+        return active;
+    }
+
+    function updateQualitativeTimeline(time) {
+        const boundedTime = Math.max(0, Math.min(time, timelineDuration));
+        const active = getActiveEvent(boundedTime);
+        playhead.style.left = `${Math.min((boundedTime / timelineDuration) * 100, 100)}%`;
+        timeLabel.textContent = `${active.time}s`;
+
+        responseNodes.query.textContent = activeExample.query;
+        responseNodes.gt.textContent = active.gt;
+        responseNodes.model1.textContent = active.models[0];
+        responseNodes.model2.textContent = active.models[1];
+        responseNodes.model3.textContent = active.models[2];
+        responseNodes.model4.textContent = active.models[3];
+        responseNodes.model5.textContent = active.models[4];
+
+        timeline.querySelectorAll('.timeline-event').forEach((marker) => {
+            marker.classList.toggle('active', activeEvents[Number(marker.dataset.index)] === active);
+        });
+    }
+
+    function updateTimelineDuration() {
+        if (Number.isFinite(video.duration) && video.duration > 0) {
+            timelineDuration = video.duration;
+            if (endTimeLabel) {
+                endTimeLabel.textContent = `${Math.round(video.duration)}s`;
+            }
+            renderMarkers();
+            updateQualitativeTimeline(video.currentTime || 0);
+        }
+    }
+
+    function switchExample(index) {
+        document.querySelectorAll('.example-tab').forEach((tab) => {
+            tab.classList.toggle('active', Number(tab.dataset.exampleIndex) === index);
+        });
+
+        activeExample = qualitativeExamples[index];
+        activeEvents = activeExample.events;
+        video.pause();
+        if (video.getAttribute('src') !== activeExample.video) {
+            video.setAttribute('src', activeExample.video);
+            video.load();
+        }
+        video.currentTime = 0;
+        updateTimelineDuration();
+        renderMarkers();
+        updateQualitativeTimeline(0);
+    }
+
+    document.querySelectorAll('.example-tab').forEach((tab) => {
+        tab.addEventListener('click', () => switchExample(Number(tab.dataset.exampleIndex)));
+    });
+
+    video.addEventListener('timeupdate', () => updateQualitativeTimeline(video.currentTime));
+    video.addEventListener('seeked', () => updateQualitativeTimeline(video.currentTime));
+    video.addEventListener('loadedmetadata', updateTimelineDuration);
+    updateTimelineDuration();
+    renderMarkers();
+    updateQualitativeTimeline(0);
+}
+
 function copyBibtex() {
     const text = document.getElementById('bibtex-content').textContent;
     navigator.clipboard.writeText(text).then(() => {
@@ -865,6 +1432,8 @@ function copyBibtex() {
         setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
     });
 }
+
+document.addEventListener('DOMContentLoaded', initQualitativeTimeline);
 </script>
 
 </body>
