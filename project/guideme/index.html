@@ -629,14 +629,14 @@
         }
 
         .metric-table thead tr:first-child th:nth-child(3),
-        .metric-table thead tr:nth-child(2) th:nth-child(3),
-        .metric-table tbody td:nth-child(5) {
+        .metric-table thead tr:nth-child(2) th:nth-child(4),
+        .metric-table tbody td:nth-child(6) {
             padding-right: 24px;
         }
 
         .metric-table thead tr:first-child th:nth-child(4),
-        .metric-table thead tr:nth-child(2) th:nth-child(4),
-        .metric-table tbody td:nth-child(6) {
+        .metric-table thead tr:nth-child(2) th:nth-child(5),
+        .metric-table tbody td:nth-child(7) {
             padding-left: 24px;
         }
 
@@ -725,22 +725,24 @@
         <p class="authors">
             <a href="https://fawnliu.github.io/">Fang Liu</a><sup>1,*</sup>, &nbsp;
             <a href="https://jinpeng0528.github.io/">Jinpeng Chen</a><sup>2,*</sup>, &nbsp;
-            <a href="https://scholar.google.com/citations?user=2meBhbQAAAAJ&hl=en">Ke Xu</a><sup>1</sup>, &nbsp;
+            <a href="https://scholar.google.com/citations?user=2meBhbQAAAAJ&hl=en">Ke Xu</a><sup>3,1</sup>, &nbsp;
             <a href="https://scholar.google.com/citations?user=eHWiGU8AAAAJ&hl=en">Yuhao Liu</a><sup>1</sup>, &nbsp;
             <a href="https://scholar.google.com/citations?user=jI0LxMoAAAAJ&hl=en">Huankang Guan</a><sup>2</sup>, &nbsp;
-            <a href="https://lucky-lance.github.io/">Xudong Lu</a><sup>3</sup>, &nbsp;
+            <a href="https://lucky-lance.github.io/">Xudong Lu</a><sup>4</sup>, &nbsp;
             Bo Yang<sup>2</sup>, &nbsp;
             <br>
             <a href="https://scholar.google.com/citations?user=C2iR3xUAAAAJ&hl=en">Gerhard Petrus Hancke</a><sup>1</sup>, &nbsp;
             <a href="https://ruiliu-ai.github.io/">Rui Liu</a><sup>2,&dagger;</sup>, &nbsp;
-            <a href="https://scholar.google.com/citations?user=KilQqKYAAAAJ&hl=en">Rynson W.H. Lau</a><sup>1,4,&dagger;</sup>
+            <a href="https://scholar.google.com/citations?user=KilQqKYAAAAJ&hl=en">Rynson W.H. Lau</a><sup>1,5,&dagger;</sup>
         </p>
         <p class="affiliations">
             <sup>1</sup>City University of Hong Kong &nbsp;&nbsp;
             <sup>2</sup>Huawei Research &nbsp;&nbsp;
             <br>
-            <sup>3</sup>Chinese University of Hong Kong &nbsp;&nbsp;
-            <sup>4</sup>City University of Hong Kong (Dongguan)
+            <sup>3</sup>University of Science and Technology of China &nbsp;&nbsp;
+            <br>
+            <sup>4</sup>Chinese University of Hong Kong &nbsp;&nbsp;
+            <sup>5</sup>City University of Hong Kong (Dongguan)
         </p>
         <p class="venue">ECCV 2026</p>
         <p class="note"><sup>*</sup>Joint first authors &nbsp;&nbsp; <sup>&dagger;</sup>Corresponding authors</p>
@@ -953,13 +955,14 @@
                     <tr>
                         <th rowspan="2">Model</th>
                         <th rowspan="2">Param.</th>
-                        <th colspan="3">Temporal Alignment</th>
+                        <th colspan="4">Temporal Alignment</th>
                         <th colspan="5">Response Behavior</th>
                     </tr>
                     <tr>
                         <th>sPrecision &uarr;</th>
                         <th>sRecall &uarr;</th>
                         <th>sF1 &uarr;</th>
+                        <th>Score<sub>m</sub> &uarr;</th>
                         <th>CS &uarr;</th>
                         <th>NR &darr;</th>
                         <th>FA &darr;</th>
@@ -969,7 +972,7 @@
                 </thead>
                 <tbody>
                     <tr class="group-row">
-                        <td colspan="10">Proprietary Multimodal Models</td>
+                        <td colspan="11">Proprietary Multimodal Models</td>
                     </tr>
                     <tr>
                         <td>Doubao-Seed-1.8</td>
@@ -977,6 +980,7 @@
                         <td>30.6</td>
                         <td><strong>47.5</strong></td>
                         <td>36.8</td>
+                        <td>63.1</td>
                         <td>8.8</td>
                         <td>6.1</td>
                         <td>34.8</td>
@@ -989,6 +993,7 @@
                         <td>30.2</td>
                         <td>36.8</td>
                         <td>32.5</td>
+                        <td>64.4</td>
                         <td>13.4</td>
                         <td>16.8</td>
                         <td>30.6</td>
@@ -1001,6 +1006,7 @@
                         <td>39.3</td>
                         <td>36.9</td>
                         <td>36.5</td>
+                        <td><strong>66.6</strong></td>
                         <td>17.5</td>
                         <td>22.0</td>
                         <td>19.0</td>
@@ -1013,6 +1019,7 @@
                         <td>29.3</td>
                         <td>46.9</td>
                         <td>35.7</td>
+                        <td>61.5</td>
                         <td>7.4</td>
                         <td>6.3</td>
                         <td>36.4</td>
@@ -1020,7 +1027,7 @@
                         <td>37.8</td>
                     </tr>
                     <tr class="group-row">
-                        <td colspan="10">Open-source Multimodal Models</td>
+                        <td colspan="11">Open-source Multimodal Models</td>
                     </tr>
                     <tr>
                         <td>Qwen2.5-7B</td>
@@ -1028,6 +1035,7 @@
                         <td>30.1</td>
                         <td>30.9</td>
                         <td>29.3</td>
+                        <td>57.5</td>
                         <td>19.7</td>
                         <td>20.4</td>
                         <td>25.4</td>
@@ -1040,6 +1048,7 @@
                         <td>29.7</td>
                         <td>46.8</td>
                         <td>35.7</td>
+                        <td>62.0</td>
                         <td>5.2</td>
                         <td>6.7</td>
                         <td>37.7</td>
@@ -1052,6 +1061,7 @@
                         <td>29.5</td>
                         <td>46.9</td>
                         <td>35.6</td>
+                        <td>61.6</td>
                         <td>6.7</td>
                         <td>6.0</td>
                         <td>36.5</td>
@@ -1064,6 +1074,7 @@
                         <td>38.4</td>
                         <td>20.2</td>
                         <td>21.7</td>
+                        <td>64.6</td>
                         <td>35.2</td>
                         <td>37.9</td>
                         <td>7.9</td>
@@ -1071,7 +1082,7 @@
                         <td><strong>45.7</strong></td>
                     </tr>
                     <tr class="group-row">
-                        <td colspan="10">Open-source Multimodal Streaming Models</td>
+                        <td colspan="11">Open-source Multimodal Streaming Models</td>
                     </tr>
                     <tr>
                         <td>VideoLLM-online</td>
@@ -1079,6 +1090,7 @@
                         <td>22.3</td>
                         <td>41.1</td>
                         <td>28.7</td>
+                        <td>40.8</td>
                         <td>0.0</td>
                         <td><strong>0.0</strong></td>
                         <td>43.6</td>
@@ -1091,30 +1103,35 @@
                         <td>1.0</td>
                         <td>0.1</td>
                         <td>0.1</td>
+                        <td>46.7</td>
                         <td><strong>43.6</strong></td>
                         <td>56.3</td>
                         <td><strong>0.0</strong></td>
                         <td>0.1</td>
                         <td>43.6</td>
                     </tr>
+                    <!--
                     <tr>
                         <td>StreamingVLM</td>
                         <td>7B</td>
                         <td>3.2</td>
                         <td>0.3</td>
                         <td>0.6</td>
+                        <td>--</td>
                         <td>42.9</td>
                         <td>55.5</td>
                         <td>0.7</td>
                         <td>0.9</td>
                         <td>42.9</td>
                     </tr>
+                    -->
                     <tr>
                         <td>LiveStar</td>
                         <td>8B</td>
                         <td>20.7</td>
                         <td>19.0</td>
                         <td>19.1</td>
+                        <td>14.4</td>
                         <td>21.2</td>
                         <td>24.4</td>
                         <td>22.2</td>
@@ -1127,6 +1144,7 @@
                         <td>3.3</td>
                         <td>0.2</td>
                         <td>0.4</td>
+                        <td>43.3</td>
                         <td>41.7</td>
                         <td>57.9</td>
                         <td>0.2</td>
@@ -1134,7 +1152,7 @@
                         <td>41.8</td>
                     </tr>
                     <tr class="group-row">
-                        <td colspan="10">Fine-tuned on GuideMe Train Set</td>
+                        <td colspan="11">Fine-tuned on GuideMe Train Set</td>
                     </tr>
                     <tr>
                         <td>Qwen3-VL-8B<sup>&dagger;</sup></td>
@@ -1142,6 +1160,7 @@
                         <td><strong>40.3</strong></td>
                         <td>43.7</td>
                         <td><strong>39.7</strong></td>
+                        <td>58.1</td>
                         <td>19.5</td>
                         <td>20.6</td>
                         <td>24.5</td>
@@ -1151,7 +1170,7 @@
                 </tbody>
             </table>
         </div>
-        <p class="table-caption">Main evaluation results on GuideMe. sPrecision is the sum of matched semantic similarities divided by active non-silent predictions, measuring intervention relevance; sRecall is divided by non-silent ground-truth responses, measuring required-intervention coverage; sF1 is their harmonic mean.<br>CS: Correct Silent, NR: No Response, FA: False Alarm, PC: Partly Correct. Score is the average instance-level score: CS receives 100, FA and NR receive 0, and PC receives an LLM-as-a-Judge quality score scaled to 0-100. <sup>&dagger;</sup> denotes fine-tuning on the GuideMe training split.</p>
+        <p class="table-caption">Main evaluation results on GuideMe. sPrecision is the sum of matched semantic similarities divided by active non-silent predictions, measuring intervention relevance; sRecall is divided by non-silent ground-truth responses, measuring required-intervention coverage; sF1 is their harmonic mean.<br>Score<sub>m</sub> is the LLM-as-a-Judge quality score averaged over successfully matched prediction-reference intervention pairs, isolating response quality after temporal-semantic matching.<br>CS: Correct Silent, NR: No Response, FA: False Alarm, PC: Partly Correct. Score is the average instance-level response-behavior score: CS receives 100, FA and NR receive 0, and PC receives an LLM-as-a-Judge quality score scaled to 0-100. <sup>&dagger;</sup> denotes fine-tuning on the GuideMe training split.</p>
         <div class="content-grid" style="margin-top: 28px;">
             <div class="info-card">
                 <h3>Aggressive vs. Conservative Behaviors</h3>
