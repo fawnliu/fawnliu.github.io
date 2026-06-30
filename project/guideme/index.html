@@ -1206,7 +1206,7 @@
                         <span data-response="query">I'm going to make some oatmeal. Can you walk me through the steps and let me know if I make any mistakes along the way?</span>
                     </div>
                 </div>
-                <video id="qualitative-video" class="qualitative-video" src="imgs/egoper.mp4" controls muted playsinline></video>
+                <video id="qualitative-video" class="qualitative-video" src="imgs/egoper.mp4" controls autoplay muted playsinline></video>
                 <div class="timeline-panel">
                 <div class="timeline-track shared-timeline" id="qualitative-timeline">
                     <span class="timeline-playhead" id="timeline-playhead"></span>
@@ -3528,6 +3528,9 @@ function initQualitativeTimeline() {
     updateTimelineDuration();
     renderMarkers();
     updateQualitativeTimeline(0);
+    video.play().catch(() => {
+        // Some browsers block autoplay despite muted playback.
+    });
 }
 
 function copyBibtex() {
