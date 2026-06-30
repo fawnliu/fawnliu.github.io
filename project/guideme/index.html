@@ -771,15 +771,15 @@
             To evaluate existing models on GuideMe, we design a three-facet assessment framework to measure representative MLLMs, consisting of temporal-semantic bipartite matching for sequence-level alignment, behavioral classification for intervention timing, and LLM-as-a-Judge for content quality.
             Extensive experiments highlight a critical performance asymmetry: despite excelling at providing instructions, existing MLLMs consistently fail to identify execution errors and respond with corrective feedback.
         </p>
-        <p class="abstract-text" style="margin-top: 18px;">
-            GuideMe is split into <strong>GuideMe-Train</strong> (1,985 videos, 177.0 hours) and <strong>GuideMe-Test</strong> (473 videos, 46.7 hours); all reported evaluations use GuideMe-Test, while GuideMe-Train supports task-specific adaptation and is used only for the fine-tuned Qwen3-VL-8B result in the main results table.
-        </p>
     </div>
 </section>
 
 <section>
     <div class="container">
         <h2>GuideMe Dataset</h2>
+        <p class="abstract-text" style="margin-bottom: 28px;">
+            The final dataset contains 2,458 video instances with a combined duration of 223.7 hours. Video lengths range from 0.5 to 41.2 minutes (average 5.5 min, median 3.6 min), yielding 47,775 streaming interaction samples across cooking, daily tasks, fitness, and embodied assistance, of which 9,876 form the held-out test set used for all evaluations. GuideMe is split into <strong>GuideMe-Train</strong> (1,985 videos, 177.0 hours) and <strong>GuideMe-Test</strong> (473 videos, 46.7 hours); all reported evaluations use GuideMe-Test, while GuideMe-Train supports task-specific adaptation and is used only for the fine-tuned Qwen3-VL-8B result in the main results table.
+        </p>
         <div class="stats-grid">
             <div class="stat-card">
                 <span class="stat-number">2,458</span>
