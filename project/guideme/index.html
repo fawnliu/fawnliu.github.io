@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GuideMe: Benchmarking Multi-Domain Task Guidance and Intervention in Streaming Video</title>
+    <title>GuideMe: Multi-Domain Task Guidance and Intervention in Streaming Video</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -721,7 +721,7 @@
 
 <section class="hero">
     <div class="container">
-        <h1>GuideMe: Benchmarking Multi-Domain Task Guidance and Intervention in Streaming Video</h1>
+        <h1>GuideMe: Multi-Domain Task Guidance and Intervention in Streaming Video</h1>
         <p class="authors">
             <a href="https://fawnliu.github.io/">Fang Liu</a><sup>1,*</sup>, &nbsp;
             <a href="https://jinpeng0528.github.io/">Jinpeng Chen</a><sup>2,*</sup>, &nbsp;
@@ -763,28 +763,30 @@
 
 <section style="background: var(--bg-alt);">
     <div class="container">
-        <h2>Abstract</h2>
         <p class="abstract-text">
             While multimodal Large Language Models (MLLMs) excel at offline video understanding, an interesting question of <em>how far they are from serving as a real-time procedural coach</em> remains unknown.
             Such a role typically requires an MLLM to continuously monitor the execution, detect mistakes, and provide corrective guidance in a closed-loop interaction.
-            In this paper, we construct <strong>GuideMe</strong>, the first multi-domain streaming benchmark, enabling the evaluation of MLLMs in providing closed-loop interactive task guidance.
-            It comprises 2,458 videos spanning 224 hours across diverse domains, including cooking, object manipulation, daily-life guidance, and fitness, with 47,775 interaction samples covering next-step instructions, completion feedback, error detection, and corrective guidance.
+            In this paper, we construct <strong>GuideMe</strong>, the first multi-domain benchmark for streaming video that supports training and evaluation of MLLMs for closed-loop interactive task guidance.
+            It comprises 2,458 videos spanning 223.7 hours across diverse domains, including cooking, object manipulation, daily-life guidance, and fitness, with 47,775 interaction samples covering next-step instructions, completion feedback, error detection, and corrective guidance.
             To evaluate existing models on GuideMe, we design a three-facet assessment framework to measure representative MLLMs, consisting of temporal-semantic bipartite matching for sequence-level alignment, behavioral classification for intervention timing, and LLM-as-a-Judge for content quality.
             Extensive experiments highlight a critical performance asymmetry: despite excelling at providing instructions, existing MLLMs consistently fail to identify execution errors and respond with corrective feedback.
+        </p>
+        <p class="abstract-text" style="margin-top: 18px;">
+            GuideMe is split into <strong>GuideMe-Train</strong> (1,985 videos, 177.0 hours) and <strong>GuideMe-Test</strong> (473 videos, 46.7 hours); all reported evaluations use GuideMe-Test, while GuideMe-Train supports task-specific adaptation and is used only for the fine-tuned Qwen3-VL-8B result in the main results table.
         </p>
     </div>
 </section>
 
 <section>
     <div class="container">
-        <h2>GuideMe Benchmark</h2>
+        <h2>GuideMe Dataset</h2>
         <div class="stats-grid">
             <div class="stat-card">
                 <span class="stat-number">2,458</span>
                 <span class="stat-label">Videos</span>
             </div>
             <div class="stat-card">
-                <span class="stat-number">224</span>
+                <span class="stat-number">223.7</span>
                 <span class="stat-label">Hours</span>
             </div>
             <div class="stat-card">
@@ -894,7 +896,7 @@
                         <td>GuideMe</td>
                         <td>Diverse</td>
                         <td>2,458</td>
-                        <td>224</td>
+                        <td>223.7</td>
                         <td>&check;</td>
                         <td>&check;</td>
                         <td>&check;</td>
@@ -974,7 +976,7 @@
                         <td>-</td>
                         <td>30.6</td>
                         <td><strong>47.5</strong></td>
-                        <td><strong>36.8</strong></td>
+                        <td>36.8</td>
                         <td>8.8</td>
                         <td>6.1</td>
                         <td>34.8</td>
@@ -996,7 +998,7 @@
                     <tr>
                         <td>Gemini 3 Pro</td>
                         <td>-</td>
-                        <td><strong>39.3</strong></td>
+                        <td>39.3</td>
                         <td>36.9</td>
                         <td>36.5</td>
                         <td>17.5</td>
@@ -1131,10 +1133,25 @@
                         <td>0.2</td>
                         <td>41.8</td>
                     </tr>
+                    <tr class="group-row">
+                        <td colspan="10">Fine-tuned on GuideMe Train Set</td>
+                    </tr>
+                    <tr>
+                        <td>Qwen3-VL-8B<sup>&dagger;</sup></td>
+                        <td>8B</td>
+                        <td><strong>40.3</strong></td>
+                        <td>43.7</td>
+                        <td><strong>39.7</strong></td>
+                        <td>19.5</td>
+                        <td>20.6</td>
+                        <td>24.5</td>
+                        <td>35.3</td>
+                        <td>42.1</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-        <p class="table-caption">Main evaluation results on GuideMe. sPrecision is the sum of matched semantic similarities divided by active non-silent predictions, measuring intervention relevance; sRecall is divided by non-silent ground-truth responses, measuring required-intervention coverage; sF1 is their harmonic mean.<br>CS: Correct Silent, NR: No Response, FA: False Alarm, PC: Partly Correct. Score is the average instance-level score: CS receives 100, FA and NR receive 0, and PC receives an LLM-as-a-Judge quality score scaled to 0-100.</p>
+        <p class="table-caption">Main evaluation results on GuideMe. sPrecision is the sum of matched semantic similarities divided by active non-silent predictions, measuring intervention relevance; sRecall is divided by non-silent ground-truth responses, measuring required-intervention coverage; sF1 is their harmonic mean.<br>CS: Correct Silent, NR: No Response, FA: False Alarm, PC: Partly Correct. Score is the average instance-level score: CS receives 100, FA and NR receive 0, and PC receives an LLM-as-a-Judge quality score scaled to 0-100. <sup>&dagger;</sup> denotes fine-tuning on the GuideMe training split.</p>
         <div class="content-grid" style="margin-top: 28px;">
             <div class="info-card">
                 <h3>Aggressive vs. Conservative Behaviors</h3>
@@ -1143,6 +1160,10 @@
             <div class="info-card">
                 <h3>Knowing When to Speak Remains Hard</h3>
                 <p>Scaling and streaming-oriented pretraining do not solve the task. Larger models do not consistently improve temporal alignment, and streaming models also struggle, with some over-responding and others collapsing toward near-silence.</p>
+            </div>
+            <div class="info-card">
+                <h3>Fine-tuning Helps but Is Not Sufficient</h3>
+                <p>Task-specific fine-tuning improves temporal alignment and response quality, but it also shifts the model toward more conservative behavior. Robust closed-loop coaching still requires jointly improving timing, intervention decisions, and content quality.</p>
             </div>
         </div>
     </div>
