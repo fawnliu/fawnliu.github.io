@@ -1178,6 +1178,7 @@
                 <button class="example-tab" type="button" data-example-index="1">Example 2</button>
                 <button class="example-tab" type="button" data-example-index="2">Example 3</button>
                 <button class="example-tab" type="button" data-example-index="3">Example 4</button>
+                <button class="example-tab" type="button" data-example-index="4">Example 5</button>
             </div>
             <div class="qualitative-content">
                 <div class="qualitative-query">
@@ -1219,6 +1220,10 @@
                         <div class="response-name">MMDuet2</div>
                         <div class="response-text" data-response="model5">Silent</div>
                     </div>
+                    <div class="response-row">
+                        <div class="response-name">Qwen3-VL-8B (SFT)</div>
+                        <div class="response-text" data-response="model6">Silent</div>
+                    </div>
                 </div>
                 </div>
             </div>
@@ -1258,6 +1263,7 @@ const qualitativeExample1Events = [
             "Silent",
             "Silent",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -1269,7 +1275,8 @@ const qualitativeExample1Events = [
             "Start by measuring **1/2 cup rolled oats** and **1 cup water (or milk)**. Pour both into a microwave-safe bowl or a small pot.",
             "Sure! To start, place an empty bowl on the scale.",
             "Silent",
-            "Silent"
+            "Silent",
+            "Start by measuring 4 tablespoons of quick-cook oats and putting them in a bowl."
         ]
     },
     {
@@ -1277,6 +1284,7 @@ const qualitativeExample1Events = [
         "gt": "Silent",
         "models": [
             "Great start! You’ve added 2 tablespoons of oats so far—add 2 more to reach the 4-tablespoon amount.",
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1291,13 +1299,15 @@ const qualitativeExample1Events = [
             "Silent",
             "Great! Now, pour 2 tablespoons of water into the bowl with the oats.",
             "Silent",
-            "Silent"
+            "Silent",
+            "Great, the oats are in. Now, measure out 1/2 cup of water."
         ]
     },
     {
         "time": 27,
         "gt": "Silent",
         "models": [
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1313,7 +1323,8 @@ const qualitativeExample1Events = [
             "Add the 1/2 cup of water into the bowl with the oats.",
             "That looks like 1/2 cup. Now, pour the water into the bowl with the oats.",
             "Great! Next, heat the water in a microwave-safe container for about 30 seconds.",
-            "Silent"
+            "Silent",
+            "Got it. Next, pour that water into the bowl with the oats."
         ]
     },
     {
@@ -1324,7 +1335,8 @@ const qualitativeExample1Events = [
             "Good pour. Now microwave the bowl for about 1 minute.",
             "Oops, you poured the water into the empty bowl. Please pour it into the bowl with the oats.",
             "Good job! Now, add 1 tablespoon of butter and stir until the oats are well coated.",
-            "Silent"
+            "Silent",
+            "Great, the water is in."
         ]
     },
     {
@@ -1335,7 +1347,8 @@ const qualitativeExample1Events = [
             "Good fix. Now stir the oats and water together briefly (5–10 seconds).",
             "Perfect! Now, pop that bowl into the microwave for about 1.5 to 2 minutes.",
             "Silent",
-            "Silent"
+            "Silent",
+            "Great, the water is in the bowl. Now, microwave it for X seconds."
         ]
     },
     {
@@ -1346,13 +1359,15 @@ const qualitativeExample1Events = [
             "Now microwave the bowl for 1 minute (watch it so it doesn’t boil over).",
             "The bowl is in the microwave. Now set it to run for 1.5 to 2 minutes.",
             "Now, add 1 tablespoon of butter and a pinch of salt to the bowl.",
-            "Silent"
+            "Silent",
+            "Now, microwave the bowl for X seconds."
         ]
     },
     {
         "time": 80,
         "gt": "Silent",
         "models": [
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1368,6 +1383,7 @@ const qualitativeExample1Events = [
             "Silent",
             "Silent",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -1379,7 +1395,8 @@ const qualitativeExample1Events = [
             "Careful—you set it for 9:00, not 1:30. Please change it to 1 minute 30 seconds and start it.",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "That's done. Next, add a handful of raisins to the bowl."
         ]
     },
     {
@@ -1390,7 +1407,8 @@ const qualitativeExample1Events = [
             "Now stir it well with a spoon.",
             "Now, add a small spoonful of honey to your oatmeal.",
             "Silent",
-            "Silent"
+            "Silent",
+            "Now, add a handful of raisins to the bowl."
         ]
     },
     {
@@ -1401,7 +1419,8 @@ const qualitativeExample1Events = [
             "Now stir the oatmeal well with a spoon.",
             "Raisins are in. Now add some nuts.",
             "Stir the oatmeal to mix in the raisins.",
-            "Silent"
+            "Silent",
+            "Perfect, the raisins are in."
         ]
     },
     {
@@ -1409,6 +1428,7 @@ const qualitativeExample1Events = [
         "gt": "Silent",
         "models": [
             "Great, you've stirred the oatmeal well. Your oatmeal is ready to enjoy!",
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1423,13 +1443,15 @@ const qualitativeExample1Events = [
             "Now let it sit for 1 minute to thicken.",
             "You used a knife instead of a spoon. Please use a spoon to stir the oatmeal.",
             "Stirred well. Enjoy your oatmeal!",
-            "Silent"
+            "Silent",
+            "Nicely stirred."
         ]
     },
     {
         "time": 146,
         "gt": "Silent",
         "models": [
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1445,6 +1467,7 @@ const qualitativeExample1Events = [
             "Now let it sit for 1 minute to thicken a bit.",
             "Silent.",
             "Taste and add more sweetener if needed.",
+            "Silent",
             "Silent"
         ]
     },
@@ -1453,6 +1476,7 @@ const qualitativeExample1Events = [
         "gt": "Silent",
         "models": [
             "Great, the oatmeal is done microwaving again. Take it out and you're ready to enjoy!",
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1467,7 +1491,8 @@ const qualitativeExample1Events = [
             "Silent",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "That's done. Now, add the bananas."
         ]
     },
     {
@@ -1475,6 +1500,7 @@ const qualitativeExample1Events = [
         "gt": "Silent",
         "models": [
             "You set the microwave for 60 seconds instead of 30. Let's adjust it to 30 seconds to avoid overcooking.",
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1489,13 +1515,15 @@ const qualitativeExample1Events = [
             "Silent",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "That's done. Now, add the bananas."
         ]
     },
     {
         "time": 182,
         "gt": "Silent",
         "models": [
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1511,6 +1539,7 @@ const qualitativeExample1Events = [
             "Silent",
             "Silent",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -1518,6 +1547,7 @@ const qualitativeExample1Events = [
         "time": 196,
         "gt": "Silent",
         "models": [
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1533,6 +1563,7 @@ const qualitativeExample1Events = [
             "Silent",
             "Silent",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -1544,13 +1575,15 @@ const qualitativeExample1Events = [
             "Silent",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "That's done. Now, drizzle some honey into the bowl."
         ]
     },
     {
         "time": 203,
         "gt": "Silent",
         "models": [
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1566,7 +1599,8 @@ const qualitativeExample1Events = [
             "Take it out and let it cool for about a minute, then you’re ready to eat.",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "That's done. Now, drizzle some honey into the bowl."
         ]
     },
     {
@@ -1574,6 +1608,7 @@ const qualitativeExample1Events = [
         "gt": "Silent",
         "models": [
             "Great, you've taken the oatmeal out of the microwave.",
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1588,7 +1623,8 @@ const qualitativeExample1Events = [
             "Let it sit for 1 minute to cool slightly.",
             "Great! Your oatmeal is ready. You can add some honey if you'd like, or just enjoy it as is.",
             "Remove it from the microwave and let it cool for a few seconds.",
-            "Silent"
+            "Silent",
+            "Now, add the bananas."
         ]
     },
     {
@@ -1599,7 +1635,8 @@ const qualitativeExample1Events = [
             "Silent",
             "Perfect, your oatmeal is ready! Enjoy!",
             "Add a scoop of your favorite topping.",
-            "Silent"
+            "Silent",
+            "Nicely stirred."
         ]
     },
     {
@@ -1610,7 +1647,8 @@ const qualitativeExample1Events = [
             "Now let it sit for about 1 minute to thicken.",
             "Next, add a drizzle of honey to the oatmeal.",
             "Serve and enjoy your oatmeal!",
-            "Silent"
+            "Silent",
+            "Now, sprinkle some cinnamon over the bowl."
         ]
     },
     {
@@ -1621,7 +1659,8 @@ const qualitativeExample1Events = [
             "Looks good. Next, let it cool for about 1 minute, then take a bite to check the temperature.",
             "Looks good. Now, drizzle a bit of honey over the top.",
             "Cinnamon sprinkled. Enjoy your oatmeal!",
-            "Silent"
+            "Silent",
+            "The cinnamon is on."
         ]
     },
     {
@@ -1632,7 +1671,8 @@ const qualitativeExample1Events = [
             "Done—your oatmeal is ready to eat.",
             "Looks delicious! Enjoy your oatmeal.",
             "Honey is drizzled. Enjoy your oatmeal!",
-            "Silent"
+            "Silent",
+            "Honey is drizzled. You're all set!"
         ]
     }
 ];
@@ -1653,6 +1693,7 @@ const qualitativeExample2Events = [
             "Silent",
             "Silent",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -1664,7 +1705,8 @@ const qualitativeExample2Events = [
             "Yes. Step 1: In a microwave-safe mug, mix **4 tbsp flour + 1/8 tsp baking powder + 1/8 tsp salt**. Add **3 tbsp milk + 1 tbsp oil**, then stir until smooth.",
             "Of course! Let's get started. First, grab a microwave-safe mug.",
             "Silent",
-            "Silent"
+            "Silent",
+            "First, grab a microwave-safe mug."
         ]
     },
     {
@@ -1675,7 +1717,8 @@ const qualitativeExample2Events = [
             "Silent",
             "Perfect. Next, add 4 tablespoons of all-purpose flour to the mug.",
             "Silent",
-            "Silent"
+            "Silent",
+            "Great, you've got the mug. Now, measure out 1/8 teaspoon of salt and add it in."
         ]
     },
     {
@@ -1686,7 +1729,8 @@ const qualitativeExample2Events = [
             "Silent",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "Perfect. Next, add 1/16 teaspoon of salt to the mug."
         ]
     },
     {
@@ -1696,6 +1740,7 @@ const qualitativeExample2Events = [
             "Silent",
             "Silent",
             "Silent.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -1708,6 +1753,7 @@ const qualitativeExample2Events = [
             "Silent",
             "Perfect. Next, add a pinch of baking soda.",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -1718,6 +1764,7 @@ const qualitativeExample2Events = [
             "Good job adding the baking powder! Next, add 1/4 teaspoon of salt to the mug.",
             "Silent",
             "You've got the baking powder! Next, add 1/16 of a teaspoon of baking soda to the mug.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -1730,6 +1777,7 @@ const qualitativeExample2Events = [
             "I can’t see your video feed yet. Tell me when the baking powder is in the mug, or share what you’re seeing, and I’ll guide the next step.",
             "That looks like 1/8 teaspoon. Go ahead and add 1/16 teaspoon of baking soda to the mug next.",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -1741,7 +1789,8 @@ const qualitativeExample2Events = [
             "Silent",
             "You're doing great! Now, add 1/16 teaspoon of baking soda to the mug.",
             "Good job! Next, pour in 3 tablespoons of milk and stir gently.",
-            "Silent"
+            "Silent",
+            "Perfect. Next, add 1/16 teaspoon of salt to the mug."
         ]
     },
     {
@@ -1751,6 +1800,7 @@ const qualitativeExample2Events = [
             "Great job adding the flour! Now, go ahead and mix the baking powder and flour together in the mug.",
             "Nice. Now add a pinch of salt and stir the dry ingredients together until evenly mixed.",
             "Silent.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -1763,7 +1813,8 @@ const qualitativeExample2Events = [
             "Now add a pinch of salt (about 1/16 teaspoon).",
             "Excellent. The next step is to add 3 tablespoons of milk.",
             "Good. Stir until the baking powder and flour are well combined.",
-            "Silent"
+            "Silent",
+            "Got it. Now, go ahead and add 1/16 teaspoon of salt."
         ]
     },
     {
@@ -1773,6 +1824,7 @@ const qualitativeExample2Events = [
             "Silent",
             "Now add 3 tablespoons of milk to the mug.",
             "That's it for the flour. The next ingredient is salt. You'll need 1/8 teaspoon.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -1785,6 +1837,7 @@ const qualitativeExample2Events = [
             "Nice. Next, add 3 tablespoons of milk to the mug.",
             "Wait, you haven't added the salt yet. You need to add 1/8 teaspoon of salt to the mug before we can move on.",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -1796,7 +1849,8 @@ const qualitativeExample2Events = [
             "Good. Next, add 3 tablespoons of milk.",
             "Hold on, you've added cheese instead of salt. You'll need to remove the cheese and add 1/8 teaspoon of salt.",
             "Salt is added. Next, crack in 1/2 a large egg.",
-            "Silent"
+            "Silent",
+            "Got it. Now add 1/16 teaspoon of baking soda to the mix."
         ]
     },
     {
@@ -1807,7 +1861,8 @@ const qualitativeExample2Events = [
             "Silent",
             "Perfect. Now add 1/16 teaspoon of baking soda.",
             "Now, add 2 tablespoons of pizza sauce.",
-            "Silent"
+            "Silent",
+            "That's the right amount of herbs. Now, add 1/16 teaspoon of black pepper to the mix."
         ]
     },
     {
@@ -1818,6 +1873,7 @@ const qualitativeExample2Events = [
             "Silent",
             "Silent.",
             "Now, add 1/8 teaspoon of salt.",
+            "Silent",
             "Silent"
         ]
     },
@@ -1828,6 +1884,7 @@ const qualitativeExample2Events = [
             "Perfect, you're mixing the dry ingredients together nicely. Keep stirring until they're evenly combined.",
             "Careful—your mug looks like it’s overflowing. Stop the microwave, let it settle for 10 seconds, then continue in 10–15 second bursts until the top looks set and no longer wet.",
             "Good catch, you need to mix those dry ingredients first. Once that's done, add 3 tablespoons of milk and 1 tablespoon of olive oil.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -1840,7 +1897,8 @@ const qualitativeExample2Events = [
             "Silent",
             "Great job mixing those dry ingredients together! Now, add 3 tablespoons of milk to the mug.",
             "Silent",
-            "Silent"
+            "Silent",
+            "It looks like you're trying to mix the batter, but you're using a spoon instead of a whisk. Try to get the lumps out with a whisk for a smoother texture."
         ]
     },
     {
@@ -1851,7 +1909,8 @@ const qualitativeExample2Events = [
             "Next step: microwave it for 1 minute and 20 seconds.",
             "Great! You've added the milk. Now, pour in 1 tablespoon of olive oil.",
             "Next, add 1 tablespoon of pizza sauce to the mug. Stir well to combine.",
-            "Silent"
+            "Silent",
+            "It looks like you're trying to add the milk, but you're spilling some of it while measuring."
         ]
     },
     {
@@ -1861,6 +1920,7 @@ const qualitativeExample2Events = [
             "Now, add 1 tablespoon of olive oil to the mug.",
             "Next, add 1 tablespoon of olive oil and stir until you have a smooth batter.",
             "Perfect. Now stir everything together.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -1873,7 +1933,8 @@ const qualitativeExample2Events = [
             "Nice. Next, add 1 tablespoon of olive oil (or any neutral oil) into the mug.",
             "Great. Now it's time to mix everything together.",
             "Stir well to combine.",
-            "Silent"
+            "Silent",
+            "Careful, you spilled some of the olive oil while you were adding it."
         ]
     },
     {
@@ -1883,6 +1944,7 @@ const qualitativeExample2Events = [
             "Now, stir all the ingredients in the mug together until you get a smooth, uniform batter.",
             "Now stir everything really well until you have a smooth batter with no dry flour pockets.",
             "Go ahead and give it a good mix until everything comes together into a dough.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -1895,7 +1957,8 @@ const qualitativeExample2Events = [
             "Now microwave it for 1 minute and 20 seconds.",
             "Good job mixing the dough. Now, spoon a tablespoon of pizza sauce over the top.",
             "Stir the mixture until it forms a dough ball.",
-            "Silent"
+            "Silent",
+            "It looks like you're trying to mix the batter, but you're spilling some of it while stirring."
         ]
     },
     {
@@ -1906,7 +1969,8 @@ const qualitativeExample2Events = [
             "Now add 1 tablespoon of pizza sauce on top—don’t stir it in. Spread it lightly.",
             "Now, spoon 1 tablespoon of marinara sauce onto the surface of the dough and spread it around.",
             "Microwave for 1 minute and 20 seconds.",
-            "Silent"
+            "Silent",
+            "It looks like you're trying to add the tomato sauce, but you're spilling some of it while you're at it."
         ]
     },
     {
@@ -1916,6 +1980,7 @@ const qualitativeExample2Events = [
             "You've added a spoonful of sauce to the mug. Now, go ahead and sprinkle some dried Italian herbs on top.",
             "Great—now add 2 tablespoons of marinara sauce on top (don’t stir it in).",
             "You've got the sauce in. Now, sprinkle a tablespoon of mozzarella cheese on top.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -1928,7 +1993,8 @@ const qualitativeExample2Events = [
             "Nice—now add 1 tablespoon of marinara sauce on top and spread it gently.",
             "It looks like you used salsa instead of marinara. Also, the sauce should be spread on top of the dough, not mixed in. You might want to start over and use 1 tablespoon of marinara sauce.",
             "Next, add 1 tablespoon of marinara sauce to the mug.",
-            "Silent"
+            "Silent",
+            "You've added 1 tablespoon of marinara sauce to the mug."
         ]
     },
     {
@@ -1939,13 +2005,15 @@ const qualitativeExample2Events = [
             "Now sprinkle a handful of shredded mozzarella on top.",
             "You grabbed the baking soda, but you actually need baking powder for this recipe. Let's swap that out.",
             "Next, sprinkle some mozzarella cheese evenly over the sauce.",
-            "Silent"
+            "Silent",
+            "Now, sprinkle some dried Italian herbs into the mug."
         ]
     },
     {
         "time": 356,
         "gt": "Silent",
         "models": [
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -1961,7 +2029,8 @@ const qualitativeExample2Events = [
             "Next, sprinkle 2 tablespoons of shredded mozzarella on top.",
             "Great, you've added the Italian herbs. The next step is to sprinkle a tablespoon of mozzarella cheese on top.",
             "Next, add 1 tablespoon of mozzarella cheese evenly over the sauce.",
-            "Silent"
+            "Silent",
+            "Now, sprinkle some dried Italian herbs into the mug."
         ]
     },
     {
@@ -1971,6 +2040,7 @@ const qualitativeExample2Events = [
             "Perfect! You've placed the mug in the microwave and started it. Now just wait for it to finish cooking.",
             "You've added the mozzarella cheese on top. Now add your pepperoni slices (about 4–6) on top of the cheese.",
             "You've put the mug in the microwave for 1 minute and 20 seconds. Now we just wait.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -1983,6 +2053,7 @@ const qualitativeExample2Events = [
             "Now add 2 tablespoons of shredded mozzarella on top.",
             "Great, you've set the microwave for 1 minute and 20 seconds. Let's wait for it to finish.",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -1994,6 +2065,7 @@ const qualitativeExample2Events = [
             "You added pepperoni slices. Nice. Now microwave it for 1 minute and 20 seconds.",
             "Silent.",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -2003,6 +2075,7 @@ const qualitativeExample2Events = [
         "models": [
             "Great, you’ve started the microwave cooking cycle. Let it run for the set 1 minute 20 seconds, then we’ll take out your mug pizza.",
             "Now add your toppings—sprinkle the mozzarella cheese on top, then add pepperoni if you want.",
+            "Silent",
             "Silent",
             "Silent",
             "Silent"
@@ -2016,7 +2089,8 @@ const qualitativeExample2Events = [
             "You've added a generous layer of mozzarella and pepperoni on top. Now microwave it for 1 minute to 1 minute 15 seconds, and stop when the cheese is melted and bubbling.",
             "You can now carefully take the mug pizza out of the microwave and enjoy!",
             "Silent",
-            "Silent"
+            "Silent",
+            "It looks like you're trying to microwave it, but you should set the timer for 1 minute and 20 seconds, not 1 minute and 10 seconds."
         ]
     },
     {
@@ -2024,6 +2098,7 @@ const qualitativeExample2Events = [
         "gt": "And that's it! You've finished all the steps. Enjoy your mug pizza!",
         "models": [
             "Great job! Your microwave mug pizza is done. Let it cool for a minute before diving in—it's hot!",
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -2051,6 +2126,7 @@ const qualitativeExample3Events = [
             "Silent",
             "Silent",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -2061,6 +2137,7 @@ const qualitativeExample3Events = [
             "Go ahead with your first movement, and I’ll give you feedback on it.",
             "What exercise are you doing right now, and what’s your target (strength, hypertrophy, rehab, technique)?\n\nAlso set up the camera so I can see: full body, side view if possible, including feet and head.",
             "Sure, let's get started. Go ahead whenever you're ready.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -2073,6 +2150,7 @@ const qualitativeExample3Events = [
             "What exercise are you doing right now (e.g., squat, push-up, deadlift), and what’s your goal (strength, form, rehab)?",
             "No, don't touch your head. Let's keep both hands on your hips to prepare.",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -2084,6 +2162,7 @@ const qualitativeExample3Events = [
             "Silent",
             "Silent",
             "Spread your legs and raise your arms!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2095,6 +2174,7 @@ const qualitativeExample3Events = [
             "Silent",
             "You have to jump and move both your arms and legs at the same time.",
             "Jump your legs apart!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2106,6 +2186,7 @@ const qualitativeExample3Events = [
             "Silent",
             "Lift your arms above your head!",
             "Great arm movement! Now add the leg motion.",
+            "Silent",
             "Silent"
         ]
     },
@@ -2116,6 +2197,7 @@ const qualitativeExample3Events = [
             "Keep jumping and moving those arms together!",
             "Nice—keep a steady rhythm. Next step: soften your knees on each landing and keep your core tight.",
             "Now do the full movement. Move your legs and your arms at the same time.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -2128,6 +2210,7 @@ const qualitativeExample3Events = [
             "Silent",
             "Make sure you're moving your arms and jumping at the same time!",
             "Jump higher and keep going!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2139,7 +2222,8 @@ const qualitativeExample3Events = [
             "Silent",
             "Nice form on those butt kickers. Now let's switch to high knees!",
             "Lift your knees higher!",
-            "Silent"
+            "Silent",
+            "Nice!"
         ]
     },
     {
@@ -2150,7 +2234,8 @@ const qualitativeExample3Events = [
             "Kick your heels back to your butt and keep your chest up.",
             "You're doing high knees right now. For butt kickers, you need to kick your heels back towards your glutes.",
             "First up are jumping jacks! Go ahead and do another one.",
-            "Silent"
+            "Silent",
+            "That's not how you do butt kickers!"
         ]
     },
     {
@@ -2161,7 +2246,8 @@ const qualitativeExample3Events = [
             "Bring those heels all the way up!",
             "You are doing high knees. To do butt kickers, alternate lifting your feet towards your buttocks while jogging in place.",
             "Silent",
-            "Silent"
+            "Silent",
+            "Yes, that's it. Keep it coming."
         ]
     },
     {
@@ -2172,7 +2258,8 @@ const qualitativeExample3Events = [
             "Silent",
             "For butt kickers, you need to jog in place, bringing your heels up to your glutes.",
             "Lift one knee towards your glutes and then switch!",
-            "Silent"
+            "Silent",
+            "I am still waiting for you to start!"
         ]
     },
     {
@@ -2183,6 +2270,7 @@ const qualitativeExample3Events = [
             "Silent",
             "You're doing squats, but we're supposed to be doing butt kickers right now!",
             "Keep going! Kick those heels up!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2194,7 +2282,8 @@ const qualitativeExample3Events = [
             "Now, high knees!",
             "Those are squats! Do butt kickers!",
             "Silent",
-            "Silent"
+            "Silent",
+            "Moving on to quick feet!"
         ]
     },
     {
@@ -2205,7 +2294,8 @@ const qualitativeExample3Events = [
             "Why are you just standing there?",
             "Let's see those walking lunges!",
             "Silent",
-            "Silent"
+            "Silent",
+            "Let's get started with the lunges!"
         ]
     },
     {
@@ -2216,6 +2306,7 @@ const qualitativeExample3Events = [
             "You're leaning too far forward. Keep your chest up.",
             "Silent.",
             "Great form! Continue!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2227,6 +2318,7 @@ const qualitativeExample3Events = [
             "Make sure your knees are aligned and not going over your toes.",
             "I am still waiting for you to keep going with the lunges!",
             "Great form! Another lunge!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2238,7 +2330,8 @@ const qualitativeExample3Events = [
             "You're doing great. Stand tall and take a long step forward for each lunge.",
             "Keep it up, you got this!",
             "Great form! Another one!",
-            "Silent"
+            "Silent",
+            "That's it! Keep it up!"
         ]
     },
     {
@@ -2249,7 +2342,8 @@ const qualitativeExample3Events = [
             "When you lunge, make sure your knee doesn't go past your toes!",
             "Are those lunges or kicks? Step forward and bend both knees, lowering your hips until both knees are bent at a 90-degree angle.",
             "Take a big step forward!",
-            "Silent"
+            "Silent",
+            "Moving on to pushups!"
         ]
     },
     {
@@ -2260,7 +2354,8 @@ const qualitativeExample3Events = [
             "Your hips are too high—bring them down into a straight plank line, then drive your knees in faster.",
             "Let's see some movement! Bring your knees to your chest!",
             "Silent",
-            "Silent"
+            "Silent",
+            "Nice!"
         ]
     },
     {
@@ -2270,6 +2365,7 @@ const qualitativeExample3Events = [
             "Yes, that's it. Keep those knees moving!",
             "Hips down, keep a straight line from shoulders to heels. Now drive your knees in fast.",
             "You're not doing a plank! You should be doing mountain climbers. Bring your knees to your chest.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -2282,7 +2378,8 @@ const qualitativeExample3Events = [
             "Silent",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "Nice!"
         ]
     },
     {
@@ -2293,6 +2390,7 @@ const qualitativeExample3Events = [
             "Silent",
             "Silent",
             "Great pace! Keep it up!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2301,6 +2399,7 @@ const qualitativeExample3Events = [
         "gt": "Silent",
         "models": [
             "Let's start mountain climbers! Get into position and drive those knees up.",
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -2315,7 +2414,8 @@ const qualitativeExample3Events = [
             "Silent",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "That's not how you do mountain climbers!"
         ]
     },
     {
@@ -2326,7 +2426,8 @@ const qualitativeExample3Events = [
             "Get down in a plank position, and drive those knees forward!",
             "You were supposed to do mountain climbers.",
             "Great pace! Keep it up!",
-            "Silent"
+            "Silent",
+            "Let's try to do more reps next time!"
         ]
     },
     {
@@ -2337,7 +2438,8 @@ const qualitativeExample3Events = [
             "You should be stretching your left leg!",
             "Are you sure that's the left quad stretch? Pull your left foot toward your butt.",
             "Good stretch! Switch to the right now.",
-            "Silent"
+            "Silent",
+            "That's your right leg. Stretch your left leg."
         ]
     },
     {
@@ -2348,7 +2450,8 @@ const qualitativeExample3Events = [
             "Silent",
             "Silent",
             "Good stretch! Switch to the right now.",
-            "Silent"
+            "Silent",
+            "That's your right leg. Stretch your left leg."
         ]
     },
     {
@@ -2356,6 +2459,7 @@ const qualitativeExample3Events = [
         "gt": "Silent",
         "models": [
             "Great job holding that quad stretch! Moving on to quad stretch right!",
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -2370,7 +2474,8 @@ const qualitativeExample3Events = [
             "Silent",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "That's your right leg. Stretch your left leg."
         ]
     },
     {
@@ -2381,7 +2486,8 @@ const qualitativeExample3Events = [
             "Silent",
             "Silent",
             "Good stretch. Switch to the right now!",
-            "Silent"
+            "Silent",
+            "You are stretching the right quad. Stretch the left quad."
         ]
     },
     {
@@ -2392,7 +2498,8 @@ const qualitativeExample3Events = [
             "Good! Keep that knee pointing down. Hold it.",
             "That doesn't look quite right! Try standing on one leg and bending your knee back to hold your foot.",
             "Silent",
-            "Silent"
+            "Silent",
+            "You are stretching the right quad. Stretch the left quad."
         ]
     },
     {
@@ -2403,7 +2510,8 @@ const qualitativeExample3Events = [
             "Silent",
             "I said quad stretch left! You're doing something else.",
             "Great stretch! Now switch to the right leg!",
-            "Silent"
+            "Silent",
+            "You are stretching the right quad. Stretch the left quad."
         ]
     },
     {
@@ -2413,6 +2521,7 @@ const qualitativeExample3Events = [
             "Moving on to side stretch left!",
             "Moving on to hamstring stretch!",
             "You're doing high knees, but it's time for a right quad stretch. Pull your right foot behind you!",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -2425,6 +2534,7 @@ const qualitativeExample3Events = [
             "Moving on to hamstring stretch left!",
             "Are you sure that's a quad stretch? That looks more like a knee hug. Let's do the quad stretch for the right leg.",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -2436,6 +2546,7 @@ const qualitativeExample3Events = [
             "Moving on to standing hamstring stretch left!",
             "That's not right. Grab your foot behind you, not in front of you. That's a quad stretch.",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -2444,6 +2555,7 @@ const qualitativeExample3Events = [
         "gt": "Silent",
         "models": [
             "Moving on to side stretch left!",
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -2458,7 +2570,8 @@ const qualitativeExample3Events = [
             "Moving on to calf raises!",
             "Silent",
             "Great stretch! Silent",
-            "Silent"
+            "Silent",
+            "That's the end of the session."
         ]
     },
     {
@@ -2469,6 +2582,7 @@ const qualitativeExample3Events = [
             "Moving on to standing hamstring stretch left!",
             "You're not doing quad stretches! Pull your heel to your glute instead of your knee to your chest!",
             "Great stretch! Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -2480,7 +2594,8 @@ const qualitativeExample3Events = [
             "Moving on to hamstring stretch!",
             "Silent",
             "Great stretch! Silent",
-            "Silent"
+            "Silent",
+            "That's the end of the session."
         ]
     }
 ];
@@ -2507,7 +2622,8 @@ const qualitativeExample4Events = [
             "Stand so your whole body is visible (head to feet) and start your first set; tell me the exercise and your target reps.",
             "Got it! Start your first exercise whenever you're ready, and I'll watch your form.",
             "Silent",
-            "Silent"
+            "Silent",
+            "First up are good morning beginner!"
         ]
     },
     {
@@ -2518,7 +2634,8 @@ const qualitativeExample4Events = [
             "Tell me which exercise you’re doing first (e.g., squat, bench, deadlift) and set the camera so I can see your whole body plus the weight from the side.",
             "Silent.",
             "Silent",
-            "Silent"
+            "Silent",
+            "First up are air jump rope!"
         ]
     },
     {
@@ -2529,7 +2646,8 @@ const qualitativeExample4Events = [
             "Position your camera so I can see your whole body (head to feet) from the side, then start your first set and tell me the exercise name and your target reps.",
             "Silent.",
             "Silent",
-            "Silent"
+            "Silent",
+            "First up are air jump rope!"
         ]
     },
     {
@@ -2540,7 +2658,8 @@ const qualitativeExample4Events = [
             "Tell me which exercise you’re doing first (e.g., squat, deadlift, bench, overhead press), your goal (strength/hypertrophy/technique), and start the set in view of the camera (full body + bar/weights visible).",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "First up are air jump rope!"
         ]
     },
     {
@@ -2551,7 +2670,8 @@ const qualitativeExample4Events = [
             "What exercise are you doing right now, and what set/rep are you on? Also, position the camera so I can see your whole body (feet to head) from the side if possible.",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "First up are air jump rope!"
         ]
     },
     {
@@ -2562,7 +2682,8 @@ const qualitativeExample4Events = [
             "Tell me what exercise you’re doing first, then start the set with your camera showing your full body (side view if possible) and the weight/equipment in frame.",
             "Sounds great! I'm ready when you are. What exercise are we starting with?",
             "Silent",
-            "Silent"
+            "Silent",
+            "First up are air jump rope!"
         ]
     },
     {
@@ -2573,6 +2694,7 @@ const qualitativeExample4Events = [
             "Silent",
             "Nice start, now lift your torso back up!",
             "Keep your back straight and knees slightly bent.",
+            "Silent",
             "Silent"
         ]
     },
@@ -2584,6 +2706,7 @@ const qualitativeExample4Events = [
             "Silent",
             "Better! That's the correct form. Keep going!",
             "Great form! Next, lower slowly.",
+            "Silent",
             "Silent"
         ]
     },
@@ -2594,6 +2717,7 @@ const qualitativeExample4Events = [
             "You got it! Keep pushing!",
             "Silent",
             "No, keep your back straight.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -2606,6 +2730,7 @@ const qualitativeExample4Events = [
             "Silent",
             "Silent.",
             "Great form! Next, lower slowly.",
+            "Silent",
             "Silent"
         ]
     },
@@ -2616,6 +2741,7 @@ const qualitativeExample4Events = [
             "Perfect form!",
             "Next: hinge back at the hips first—push your hips back, keep a neutral spine, and stop when you feel your hamstrings load.",
             "Remember to keep your back straight! Don't arch it!",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -2628,7 +2754,8 @@ const qualitativeExample4Events = [
             "Silent",
             "Next, go do standing single leg calf raise.",
             "Back straight!",
-            "Silent"
+            "Silent",
+            "Moving on to air jump rope!"
         ]
     },
     {
@@ -2639,7 +2766,8 @@ const qualitativeExample4Events = [
             "Keep your elbows close to your sides and turn the “rope” with your wrists—small jumps, soft landings.",
             "Keep up the good work!",
             "Silent",
-            "Silent"
+            "Silent",
+            "Good speed!"
         ]
     },
     {
@@ -2650,6 +2778,7 @@ const qualitativeExample4Events = [
             "Next: keep elbows tucked and wrists circling like you're turning a rope. Small, quick jumps.",
             "Keep circling your hands as you jump.",
             "Jump higher! Keep the knees bent.",
+            "Silent",
             "Silent"
         ]
     },
@@ -2661,6 +2790,7 @@ const qualitativeExample4Events = [
             "Silent",
             "Jump higher! That's it!",
             "Great height! Keep it consistent!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2672,6 +2802,7 @@ const qualitativeExample4Events = [
             "Silent",
             "Silent.",
             "Great form! Continue!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2683,7 +2814,8 @@ const qualitativeExample4Events = [
             "Silent",
             "Next up is jumping jacks!",
             "Silent",
-            "Silent"
+            "Silent",
+            "Moving on to squat kicks!"
         ]
     },
     {
@@ -2694,7 +2826,8 @@ const qualitativeExample4Events = [
             "Good! Keep your balance and engage your core!",
             "Good! Try to keep your leg straight.",
             "Silent",
-            "Good job! Keep going for the next exercise!"
+            "Good job! Keep going for the next exercise!",
+            "Nice!"
         ]
     },
     {
@@ -2705,6 +2838,7 @@ const qualitativeExample4Events = [
             "Keep your core tight and don't lean back—kick from the hip, then bring the foot back under you.",
             "Silent",
             "Great kick! Keep alternating legs!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2716,6 +2850,7 @@ const qualitativeExample4Events = [
             "Silent",
             "Please remember to straighten your leg when kicking.",
             "Great kick!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2727,6 +2862,7 @@ const qualitativeExample4Events = [
             "Ok done! Great!",
             "Watch your knees! Keep them straight!",
             "Great height! Keep legs straight!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2738,7 +2874,8 @@ const qualitativeExample4Events = [
             "Moving on to mountain climbers!",
             "Silent",
             "Silent",
-            "Silent"
+            "Silent",
+            "Moving on to squat kicks!"
         ]
     },
     {
@@ -2749,7 +2886,8 @@ const qualitativeExample4Events = [
             "Ok! Keep your legs shoulder width. Don't go too low. Push through your heels.",
             "Sink a little bit lower!",
             "Squat down, then punch!",
-            "Silent"
+            "Silent",
+            "Nice!"
         ]
     },
     {
@@ -2760,6 +2898,7 @@ const qualitativeExample4Events = [
             "Don't go too deep into squats. Keep your knees behind your toes.",
             "Looking good! Keep it up!",
             "Squat down first!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2770,6 +2909,7 @@ const qualitativeExample4Events = [
             "",
             "Ok, nice! Let's make sure to keep you knees behind your toes.",
             "Silent.",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -2782,6 +2922,7 @@ const qualitativeExample4Events = [
             "Nice! Keep going!",
             "7 reps! Try to punch faster!",
             "Great form! Next rep!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2792,6 +2933,7 @@ const qualitativeExample4Events = [
             "Keep it up!",
             "Now that was great.",
             "Great! Keep going!",
+            "Silent",
             "Silent",
             "Silent"
         ]
@@ -2804,7 +2946,8 @@ const qualitativeExample4Events = [
             "Silent",
             "Silent",
             "Great momentum!",
-            "Silent"
+            "Silent",
+            "15"
         ]
     },
     {
@@ -2815,6 +2958,7 @@ const qualitativeExample4Events = [
             "Keep the movements controlled and steady!",
             "Nice job! Keep holding that stretch!",
             "Cross your arms over your chest!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2826,6 +2970,7 @@ const qualitativeExample4Events = [
             "It's ok! Just try to not bend your arms. Keep them straight.",
             "Silent.",
             "Great form! Cross arms again.",
+            "Silent",
             "Silent"
         ]
     },
@@ -2837,6 +2982,7 @@ const qualitativeExample4Events = [
             "Ok. You did it right. Remember to keep your arms straight!",
             "Straighten your arm and face your body forward.",
             "Great form! Keep it up.",
+            "Silent",
             "Silent"
         ]
     },
@@ -2848,6 +2994,7 @@ const qualitativeExample4Events = [
             "Great! Hold it.",
             "You're still bending your arm a bit. Focus on keeping the arm straight.",
             "Great! Next rep!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2859,6 +3006,7 @@ const qualitativeExample4Events = [
             "Moving on to armcrosschest right!",
             "Keep stretching! Hold it!",
             "Great form! Next rep!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2870,7 +3018,8 @@ const qualitativeExample4Events = [
             "Same thing: keep that arm straight as you pull it across.",
             "Silent",
             "Straighten your arm! Keep it straight.",
-            "Silent"
+            "Silent",
+            "Good, now stretch out that arm."
         ]
     },
     {
@@ -2881,6 +3030,7 @@ const qualitativeExample4Events = [
             "Ok, now hold that position.",
             "Perfect form! Just keep holding it for a few more seconds.",
             "Now let's do some push-ups! Start in a plank position!",
+            "Silent",
             "Silent"
         ]
     },
@@ -2889,6 +3039,7 @@ const qualitativeExample4Events = [
         "gt": "Looking great. Keep it going!",
         "models": [
             "Moving on to tricep dips!",
+            "Silent",
             "Silent",
             "Silent",
             "Silent",
@@ -2903,6 +3054,7 @@ const qualitativeExample4Events = [
             "Silent",
             "Silent",
             "Silent",
+            "Silent",
             "Silent"
         ]
     },
@@ -2914,7 +3066,8 @@ const qualitativeExample4Events = [
             "Moving on to Overhead tricep stretch left!",
             "Silent",
             "Silent.",
-            "Silent"
+            "Silent",
+            "That's the end of the session."
         ]
     }
 ];
@@ -2929,6 +3082,268 @@ const qualitativeExample4ErrorTimestamps = new Set([
 
 const qualitativeExample4VideoPath = 'imgs/demo4.mp4';
 const qualitativeExample4Query = "I need you as my gym partner—watch my exercises and tell me what to improve or fix.";
+
+const qualitativeExample5Events = [
+    {
+        "time": 0,
+        "gt": "Silent",
+        "models": [
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 3,
+        "gt": "Sure! Start by placing a tortilla on the cutting board.",
+        "models": [
+            "Please take one tortilla out of the package to start preparing your quesadilla.",
+            "Start by heating a skillet or pan on the stove over **medium heat**.",
+            "Sure thing! Let's get started. The first step is to place a tortilla on a plate or a cutting board.",
+            "Silent",
+            "Silent",
+            "First, place the tortilla on the cutting board."
+        ]
+    },
+    {
+        "time": 12,
+        "gt": "Wait, it looks like you dropped that tortilla on the floor. Please discard it and grab a fresh one to place on the board.",
+        "models": [
+            "Oops, you dropped the tortilla on the floor. Don't use that one—take a fresh tortilla from the package instead.",
+            "Silent",
+            "Oops, the tortilla fell on the floor! Please grab a fresh one and place it on the cutting board.",
+            "Silent",
+            "Silent",
+            "Great, the tortilla is ready. Now, use your knife to scoop some Nutella."
+        ]
+    },
+    {
+        "time": 18,
+        "gt": "Silent",
+        "models": [
+            "Good job discarding the fallen tortilla. Now take a fresh tortilla from the package and place it on the red cutting board.",
+            "Silent",
+            "Silent",
+            "Now, let's sprinkle some cheese in the center of the tortilla.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 19,
+        "gt": "Silent",
+        "models": [
+            "Good job discarding the fallen tortilla. Now take a fresh tortilla from the package and place it on the cutting board.",
+            "Silent",
+            "Perfect. Now, place the new tortilla on the cutting board.",
+            "Now, let's sprinkle some cheese in the center of the tortilla.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 26,
+        "gt": "Nice, the new tortilla is ready. Now, use a knife to scoop some Nutella.",
+        "models": [
+            "Good job placing a fresh tortilla on the board! Now you can start adding your desired fillings to one half of the tortilla.",
+            "Silent",
+            "Perfect! Now grab a knife and spread some Nutella on the tortilla.",
+            "Now, let's sprinkle some cheese in the center of the tortilla.",
+            "Silent",
+            "Great, the tortilla is ready. Now, use your knife to scoop some Nutella."
+        ]
+    },
+    {
+        "time": 37,
+        "gt": "Now that you've got the Nutella, go ahead and spread it onto the tortilla.",
+        "models": [
+            "Great, you've got Nutella on the knife. Now spread it evenly across the tortilla.",
+            "That’s a butter knife—good. Spread a thin, even layer of Nutella over half the tortilla (not the whole thing).",
+            "Good job. Next, spread the Nutella evenly on one half of the tortilla.",
+            "Silent",
+            "Silent",
+            "Great. Now spread that Nutella onto the tortilla."
+        ]
+    },
+    {
+        "time": 44,
+        "gt": "Silent",
+        "models": [
+            "Good job spreading the Nutella! Now, add your next ingredient, like the raisins, onto the tortilla.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 46,
+        "gt": "Silent",
+        "models": [
+            "Good job spreading the Nutella! Now, add your next topping (like raisins or banana slices) to the tortilla.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 47,
+        "gt": "Silent",
+        "models": [
+            "Great, the Nutella is spread! Now it's time to add your chosen filling to the tortilla.",
+            "Silent",
+            "You spread Nutella over the entire tortilla, but you only needed to cover half. Now, grab some banana slices and put them on one half.",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 53,
+        "gt": "That's spread nicely. Next, sprinkle some cinnamon over the tortilla.",
+        "models": [
+            "Great job spreading the Nutella! Now, add your next ingredient, like the banana slices, on top.",
+            "Looks good. Now sprinkle shredded cheese evenly over the Nutella.",
+            "Good. Next, place some banana slices on the tortilla.",
+            "Silent",
+            "Silent",
+            "Great job spreading the Nutella. Next, sprinkle some cinnamon onto the tortilla."
+        ]
+    },
+    {
+        "time": 62,
+        "gt": "Great, the cinnamon is on.",
+        "models": [
+            "Great job with the cinnamon! Now, add some banana slices on top.",
+            "Silent",
+            "Perfect. Now, place the sliced bananas on top of the tortilla.",
+            "Good job with the cinnamon. Now, carefully place another tortilla on top of the Nutella and cinnamon.",
+            "Silent",
+            "Great, the cinnamon is on. Now, place the banana slices on the tortilla."
+        ]
+    },
+    {
+        "time": 70,
+        "gt": "Silent",
+        "models": [
+            "Now, sprinkle some oats over the tortilla.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Now, place the banana slices on the tortilla."
+        ]
+    },
+    {
+        "time": 71,
+        "gt": "Silent",
+        "models": [
+            "Now, sprinkle some oats over the tortilla.",
+            "Now fold the tortilla in half to close it.",
+            "Wait, don't pour the oats directly from the container! You'll get too many. Use a spoon or your fingers to sprinkle a small amount evenly over the tortilla instead.",
+            "Now, carefully place another tortilla on top of the first one.",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 73,
+        "gt": "Silent",
+        "models": [
+            "Now, add the oats to the tortilla.",
+            "Now fold the tortilla in half.",
+            "Looks good! Now grab the bananas and place some slices over the oats.",
+            "Now, carefully place another tortilla on top of the Nutella and cinnamon.",
+            "Silent",
+            "Wait, it looks like you're adding the raisins instead of the cinnamon."
+        ]
+    },
+    {
+        "time": 74,
+        "gt": "Silent",
+        "models": [
+            "Perfect, the oats are added. Now, fold the tortilla in half to cover the toppings.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Wait, it looks like you're adding the raisins instead of the cinnamon."
+        ]
+    },
+    {
+        "time": 75,
+        "gt": "Silent",
+        "models": [
+            "Perfect, oats added. Now, add the banana slices on top.",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent",
+            "Silent"
+        ]
+    },
+    {
+        "time": 81,
+        "gt": "Now, fold the tortilla in half.",
+        "models": [
+            "Perfect, the oats are added. Now, fold the tortilla in half to cover the toppings.",
+            "Now fold the tortilla in half.",
+            "Good job with the oats. Now, grab those sliced bananas and arrange them on the tortilla.",
+            "Now, carefully place another tortilla on top of the Nutella and cinnamon.",
+            "Silent",
+            "Now, place the banana slices on the tortilla."
+        ]
+    },
+    {
+        "time": 88,
+        "gt": "Done! Now use your knife to slice it into pieces.",
+        "models": [
+            "Perfect, the tortilla is folded. Now, place it into the microwave to heat.",
+            "Nice fold. Next, heat a pan on the stove to medium heat.",
+            "Perfect, now transfer the folded tortilla to the plate.",
+            "Good job! Place the folded tortilla in a heated skillet.",
+            "Silent",
+            "Perfect fold. Now, use the knife to slice it into wedges."
+        ]
+    },
+    {
+        "time": 99,
+        "gt": "Excellent. Now just move those tortilla wedges onto a plate.",
+        "models": [
+            "Perfect! Your quesadilla is ready to enjoy.",
+            "Silent",
+            "Looks good! Now, place those pieces onto the plate.",
+            "Silent",
+            "Silent",
+            "Perfectly sliced. Go ahead and place those tortilla wedges onto a plate."
+        ]
+    },
+    {
+        "time": 104,
+        "gt": "And you're all set! The wedges are on the plate.",
+        "models": [
+            "Perfect! Your quesadilla is ready to enjoy. Great job!",
+            "That’s on the plate—you're done.",
+            "Wait, you've put them in a bowl. Please transfer the wedges from the bowl to the plate.",
+            "Silent",
+            "Silent",
+            "Perfect, they're on the plate. You're all done!"
+        ]
+    }
+];
+
+const qualitativeExample5ErrorTimestamps = new Set([
+    12 // Dropped tortilla should be discarded and replaced.
+]);
+
+const qualitativeExample5VideoPath = 'imgs/demo5.mp4';
+const qualitativeExample5Query = "I'm going to make a quesadilla. Can you guide me through the steps and let me know if I make any mistakes along the way?";
 
 const qualitativeExamples = [
     {
@@ -2958,6 +3373,13 @@ const qualitativeExamples = [
         events: qualitativeExample4Events,
         duration: 145,
         errorTimestamps: qualitativeExample4ErrorTimestamps
+    },
+    {
+        video: qualitativeExample5VideoPath,
+        query: qualitativeExample5Query,
+        events: qualitativeExample5Events,
+        duration: 106,
+        errorTimestamps: qualitativeExample5ErrorTimestamps
     }
 ];
 
@@ -2981,7 +3403,8 @@ function initQualitativeTimeline() {
         model2: document.querySelector('[data-response="model2"]'),
         model3: document.querySelector('[data-response="model3"]'),
         model4: document.querySelector('[data-response="model4"]'),
-        model5: document.querySelector('[data-response="model5"]')
+        model5: document.querySelector('[data-response="model5"]'),
+        model6: document.querySelector('[data-response="model6"]')
     };
 
     function renderMarkers() {
@@ -3032,6 +3455,7 @@ function initQualitativeTimeline() {
         responseNodes.model3.textContent = active.models[2];
         responseNodes.model4.textContent = active.models[3];
         responseNodes.model5.textContent = active.models[4];
+        responseNodes.model6.textContent = active.models[5] || 'Silent';
 
         timeline.querySelectorAll('.timeline-event').forEach((marker) => {
             marker.classList.toggle('active', activeEvents[Number(marker.dataset.index)] === active);
